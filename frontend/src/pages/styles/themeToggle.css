@@ -1,0 +1,50 @@
+.themeToggle{
+  /* background-color: red; */
+  padding: 2rem;
+}
+.themeToggle-container{
+  display: flex;
+  flex-direction: column;
+  gap: .75rem;
+  margin: 2.8rem 0;
+}
+.theme-title{
+  display: flex;
+  padding-inline: 1rem;
+  align-items: center;
+  gap: 1rem;
+  font-size: 1.75rem;
+}
+.theme-num{
+  background-color: var(--dark-color);
+  border-radius: 50%;
+  width: 45px;
+  height: 45px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.themeToggle-section1{
+  display: flex;
+}
+.theme-title .theme-icons{
+  width: 25px;
+  height: 25px;
+}
+.theme-info{
+  background-color: var(--tertiary-color);
+  color: var(--dark-color);
+  padding: 1.5rem ;
+  border-radius: 1rem;
+}
+.switch-btn{
+  background-color: var(--dark-color);
+  border: none;
+  padding: .5rem;
+  border-radius: 50%;
+  margin: 1rem 0;
+  cursor: pointer;
+}
+.swtich{
+  color: var(--color);
+}

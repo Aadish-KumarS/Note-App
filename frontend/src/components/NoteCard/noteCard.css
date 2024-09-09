@@ -1,0 +1,70 @@
+.notescard{
+  background-color: var(--tertiary-color);
+  color: var(--dark-color);
+  min-height: 300px;
+  overflow: hidden;
+  border-radius: 1rem;
+  padding: 1rem;
+  justify-content: space-between;
+  margin: 1rem 0;
+}
+
+.notescard-sec1{
+  padding: 1rem;
+  gap:2rem;
+  justify-content: end;
+  border-bottom: 1px solid gray;
+  align-items: center;
+  display: flex;
+}
+
+.notescard-sec2{
+  margin: 1rem 0;
+  gap: 1rem;
+
+}
+.notescard-sec2-content{
+  max-height: 400px;
+  overflow: scroll;
+}
+.notescard-sec3{
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-top: 1.25rem;
+}
+.notescard-sec2,
+.notescard-sec1 *,
+.notescard{
+  display: flex;
+  flex-direction: column;
+}
+.notescard-sec4{
+  margin-top:  .75rem ;
+}
+.card_number {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color:var(--dark-color);
+  color: var(--color);
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+}
+.notescard-sec3 .tag{
+  padding: .5rem 1.25rem;
+  border-radius: 3rem;
+  font-size: .9rem;
+}
+
+.notescard-sec4 .delete-btn {
+  color: var(--neon-red);
+}
+.notescard-sec1 .edit-btn {
+  color: var(--neon-purple);
+}
+.notescard-sec1 .star-btn {
+  color: var(--neon-orange);
+  cursor: pointer;
+}

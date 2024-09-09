@@ -1,0 +1,85 @@
+:root {
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  color-scheme: light dark 'Black&White' Coffee;
+
+  
+
+  --neon-blue: #3a86ff;
+  --neon-purple: #af2eff;
+  --neon-pink: #ff006e;
+  --neon-orange: #fb5607;
+  --neon-green: #9ef01a;
+  --neon-red: #FF3131;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  transition: background-color 0.3s ease;
+  background-color: var(--background-color);
+  color: var(--color);
+  min-height: 100vh;
+}
+
+body.coffee{
+  --background-color: #38220f;
+  --primary-color: #634832;
+  --secondary-color: #967259;
+  --tertiary-color: 	#dbc1ac;
+  --color: 	#ece0d1;
+  --dark-color: #2d0c05;
+}
+
+body.bw{
+  --background-color: #171717;
+  --primary-color: 	#525252;
+  --secondary-color: #8c8c8c;
+  --tertiary-color: 	#b7b7b7;
+  --dark-color: #000000;
+  --color: #ffffff;
+}
+
+body.eveSkyShade {
+  --background-color: #BA5373;
+  --primary-color: #EB6B74;
+  --secondary-color: #fea761;
+  --tertiary-color: 	#FDBF71;
+  --color: 	#FFE1B9;
+  --dark-color: #702D76;
+}
+
+body.no-scroll {
+  overflow: hidden; 
+}
+
+*{
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+a{
+  color: white;
+  text-decoration: none;
+}
+li {
+  list-style: none;
+}
+
+
+/* utils */
+
+.icon {
+  width: 20px;
+  height: 20px;
+}
+.overlay {
+  position: relative;
+  z-index: -1;
+}

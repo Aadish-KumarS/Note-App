@@ -1,0 +1,27 @@
+.home{
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+}
+
+.home_conatiner {
+  width: 100%;
+  display: flex;
+  gap:1rem;
+}
+
+.home_conatiner-menu{
+  background-color: var(--tertiary-color);
+  min-width: 22vw;
+}
+.home_conatiner-menu a {
+  color: var(--dark-color) !important;
+}
+.home_conatiner-route{
+  background-color: var(--primary-color);
+  width: 100%;
+  margin: 1rem;
+  border-radius: 1rem;
+  padding: 1rem;
+  margin-top: 3rem;
+}
