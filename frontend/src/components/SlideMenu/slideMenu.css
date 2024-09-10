@@ -40,7 +40,7 @@
   flex-direction: column;
   justify-content: center;
   gap: 1rem;
-  margin-top: -300px;
+  margin-top: -30px;
 }
 .notes-list-item{
   background-color: var(--tertiary-color);

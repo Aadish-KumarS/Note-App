@@ -3,10 +3,11 @@ import { Link } from "react-router-dom";
 import { IoTrashSharp } from "react-icons/io5";
 import { BsPencilSquare } from "react-icons/bs";
 import { FaRegStar, FaStar } from "react-icons/fa";
+import { MdOutlineRestorePage } from "react-icons/md";
 import './noteCard.css'
 import axios from 'axios';
 
-const NoteCard = ({notes,setNotes}) => {
+const NoteCard = ({notes,setNotes,handleDeleteNote,isDeleted = false}) => {
   
 
   const handleSetImportant =  (note) => {
@@ -26,6 +27,7 @@ const NoteCard = ({notes,setNotes}) => {
     } catch (error) {
       console.error("Error updating note importance:", error);
     }
+    console.log('yess')
   };
 
   return (
@@ -34,23 +36,27 @@ const NoteCard = ({notes,setNotes}) => {
           return(
             <div className="notescard" key={note._id}>
               <div>
-                <div className="notescard-sec1">
-                  <Link to={`edit/${note._id}`}>
-                    <BsPencilSquare className="icon edit-btn" />
-                  </Link>
-                  {
-                    note.isImportant 
-                      ? <FaStar 
-                          onClick={() => handleSetImportant(note)} 
-                          className="icon star-btn" 
-                        /> 
-                      : <FaRegStar 
-                          onClick={() => handleSetImportant(note)} 
-                          className="icon star-btn" 
-                        />
-                  }
-                  
-                </div>
+                {
+                  !isDeleted && 
+                  <div className="notescard-sec1">
+                    <Link to={`/notes/edit/${note._id}`}>
+                      <BsPencilSquare className="icon edit-btn" />
+                    </Link>
+                    {
+                      note.isImportant 
+                        ? <FaStar 
+                            onClick={() => handleSetImportant(note)} 
+                            className="icon star-btn" 
+                          /> 
+                        : <FaRegStar 
+                            onClick={() => handleSetImportant(note)} 
+                            className="icon star-btn" 
+                          />
+                    }
+                    
+                  </div>
+                }
+
                 <div className="notescard-sec2">
                   <div className="card_number">{i+1}</div>
                   <h1>{note.title}</h1>
@@ -73,9 +79,12 @@ const NoteCard = ({notes,setNotes}) => {
                 })}
               </div>
               <div className="notescard-sec4">
-                <Link to={`delete/${note._id}`}>
-                  <IoTrashSharp className="icon delete-btn" />
-                </Link>
+                {
+                  isDeleted 
+                    ? <MdOutlineRestorePage className="icon restore-btn" />
+                    : <IoTrashSharp onClick={(id)=> handleDeleteNote(note._id)} className="icon delete-btn" />
+                }
+                
               </div>
             </div>
           )

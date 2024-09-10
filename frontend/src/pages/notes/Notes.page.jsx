@@ -5,8 +5,16 @@ import '../styles/notes.css'
 import EditNote from "./EditNote"
 import DeleteNote from "./DeleteNote"
 import NoteDetail from './NoteDetail'
+import ImportantNotes from "./ImportantNotes"
+import DeletedNotes from "./DeletedNotes"
+import { useState } from "react"
+import axios from 'axios'
 
 const Notes = () => {
+
+  const [showAlertPopup, setShowAlertPopup] = useState(false);
+  const [popupAction, setPopupAction] = useState('');
+
 
   const handleAddTag = (tag,setNote,note) => {
     const newTag = {name: tag, color: 'gray'}
@@ -52,6 +60,42 @@ const Notes = () => {
     }));
   }
 
+  const handleConfirm = async (deletedNotes, setDeletedNotes) => {
+    try {
+      if (popupAction === 'delete') {
+        await axios.delete('http://localhost:5001/api/deleted-notes/delete-all');
+        setDeletedNotes([]);
+      } else if (popupAction === 'restore') {
+        try {
+          await Promise.all(
+            deletedNotes.map((note) =>
+              axios.post('http://localhost:5001/api/notes/create', note)
+            )
+          );
+          await axios.delete('http://localhost:5001/api/deleted-notes/delete-all');
+          setDeletedNotes([]);
+        } catch (error) {
+          console.error('Error restoring all deleted notes:', error.message);
+        }
+      }
+    } catch (error) {
+      console.error(
+        `Error handling ${popupAction === 'delete' ? 'deleting' : 'restoring'} all notes:`,
+        error.message
+      );
+    } finally {
+      setShowAlertPopup(false);
+      setPopupAction('');
+      document.body.classList.remove('no-scroll')
+
+    }
+  };
+  
+
+  const handleCancel = () => {
+    setShowAlertPopup(false);
+    document.body.classList.remove('no-scroll')
+  };
 
   return (
     
@@ -75,6 +119,17 @@ const Notes = () => {
         />
       }/>
       <Route path=":id" element={<NoteDetail/>}/>
+      <Route path="important-notes" element={<ImportantNotes/>}/>
+      <Route path="deleted-notes" element={
+        <DeletedNotes
+          showAlertPopup={showAlertPopup}  
+          popupAction={popupAction}
+          setPopupAction={setPopupAction}
+          setShowAlertPopup={setShowAlertPopup}
+          onCancel={handleCancel}
+          onConfirm={handleConfirm}
+        />
+      }/>
     </Routes>
   )
 }

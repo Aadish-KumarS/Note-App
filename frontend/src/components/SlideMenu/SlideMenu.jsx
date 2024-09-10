@@ -1,31 +1,13 @@
 import { Link } from "react-router-dom"
 import './slideMenu.css'
 import { IoIosArrowForward } from "react-icons/io";
-import { useState } from "react";
 import { AiOutlinePlusCircle } from "react-icons/ai";
 import { PiPencilSimpleBold } from "react-icons/pi";
-import { MdOutlineDeleteForever } from "react-icons/md";
-import { rotateArrow, slideAnimation } from "../../utils/animation";
+import { FaRegStar } from "react-icons/fa";
+import { MdAutoDelete } from "react-icons/md";
 
 const SlideMenu = () => {
 
-  const [isArrowActive, setIsArrowActive] = useState({
-    notes: true,
-    todo: true,
-  })
-
-  const handleArrow = () => {
-    setIsArrowActive(prev => ({...prev, notes: !prev.notes}))
-    {
-      if(isArrowActive.notes) {
-        slideAnimation('.notes-list', '-30px',) 
-        rotateArrow('.arrow','90deg')
-      } else {
-        slideAnimation('.notes-list','-300px',)
-        rotateArrow('.arrow','0deg')
-      }
-    }
-  }
 
   return (
     <section className="menu">
@@ -36,7 +18,6 @@ const SlideMenu = () => {
           <Link 
             className="section3-item" 
             to={'/notes'}
-            onClick={() => handleArrow('note')}
           > 
             Notes 
             <IoIosArrowForward
@@ -49,18 +30,28 @@ const SlideMenu = () => {
                 Create new Note <AiOutlinePlusCircle className="icon" />
               </Link>
             </div>
-            <div className="notes-list-item">
-              Edit a Note <PiPencilSimpleBold className="icon" />
+            <div>
+              <Link  className="notes-list-item" to={'/construction'}>
+                Edit a Note 
+                <PiPencilSimpleBold   className="icon" />
+              </Link>
             </div>
-            <div className="notes-list-item">
-              Delete Notes <MdOutlineDeleteForever className="icon" />
+            <div>
+              <Link  to={'/notes/deleted-notes'} className="notes-list-item">
+                Delete Notes 
+                <MdAutoDelete className="icon" />
+              </Link>
+            </div>
+            <div>
+              <Link  className="notes-list-item" to={'/notes/important-notes'}>
+                Important <FaRegStar  className="icon" />
+              </Link>
             </div>
           </div>
         </div>
         <Link 
           className="section3-item" 
           to={'/construction'}
-          onClick={() => handleArrow('todo')}
         > 
           Todo <IoIosArrowForward className="icon arrow" />
         </Link>

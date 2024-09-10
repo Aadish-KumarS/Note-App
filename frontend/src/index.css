@@ -7,7 +7,7 @@
 
   
 
-  --neon-blue: #3a86ff;
+  --neon-blue: #48bfff;
   --neon-purple: #af2eff;
   --neon-pink: #ff006e;
   --neon-orange: #fb5607;
@@ -74,6 +74,10 @@ li {
 
 
 /* utils */
+.no-scroll{
+  overflow: hidden; 
+  height: 100vh; 
+}
 
 .icon {
   width: 20px;

@@ -230,3 +230,61 @@
   cursor: pointer;
   border: 3px solid transparent;
 }
+
+
+/* ---------------------------------------------------- */
+/* Important notes */
+/* ---------------------------------------------------- */
+.important-notes{
+  display: flex;
+  flex-direction: column;
+  gap: .5rem
+}
+
+
+
+/* ---------------------------------------------------- */
+/* Deleted Notes */
+/* ---------------------------------------------------- */
+.deletedNotes{
+  height: 100%;
+}
+.deletedNotes-btnContainer{
+  display: flex;
+  gap: 1rem;
+}
+.empty-deletedNotes{
+  margin: 5rem 2rem;
+  width: 100%;
+  height: 100%;
+  font-size: 2rem;
+}
+.restore-all-btn{
+  color: var(--neon-blue);
+  cursor: pointer;
+}
+.delete-all-btn {
+  color: var(--neon-red);
+}
+.deletedNotes-btn{
+  border-radius: 3rem;
+  cursor: pointer;
+  padding: .75rem 1.25rem;
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  background-color: var(--secondary-color);
+  color: var(--dark-color);
+}
+.empty-alert{
+  color: var(--neon-red);
+  margin: 2rem 0;
+  background-color: var(--tertiary-color);
+  width: fit-content;
+  padding: .75rem 1.5rem;
+  border-radius: 2rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+}

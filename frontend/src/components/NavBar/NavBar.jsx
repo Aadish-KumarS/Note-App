@@ -13,7 +13,6 @@ const NavBar = ({setIsSlideMenuActive,}) => {
       return true
     }
   }
-  console.log(location.pathname)
 
   return (
     <section className="navbar">

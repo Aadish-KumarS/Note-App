@@ -3,6 +3,8 @@ import cors from 'cors';
 import dotenv from 'dotenv';
 import mongoose from "mongoose";
 import notesRouter from './routes/notes.route.js'
+import deletedNotesRouter from './routes/deletedNotes.route.js'
+
 
 dotenv.config();
 
@@ -13,6 +15,7 @@ const PORT = 5001
 app.use(express.json());
 app.use(cors());
 app.use('/api/notes', notesRouter)
+app.use('/api/deleted-notes',deletedNotesRouter)
 
 mongoose.connect(process.env.MONGOOSE_URI)
   .then(() => {

@@ -59,7 +59,9 @@
 }
 
 .notescard-sec4 .delete-btn {
+  margin: 2rem 0 1rem 0;
   color: var(--neon-red);
+  cursor: pointer;
 }
 .notescard-sec1 .edit-btn {
   color: var(--neon-purple);
@@ -67,4 +69,7 @@
 .notescard-sec1 .star-btn {
   color: var(--neon-orange);
   cursor: pointer;
+}
+.restore-btn {
+  color: var(--neon-purple);
 }
