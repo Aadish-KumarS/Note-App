@@ -6,14 +6,14 @@
   border-radius: 1rem;
   padding: 1rem;
   justify-content: space-between;
-  margin: 1rem 0;
+  margin-bottom: 1rem ;
 }
 
 .notescard-sec1{
   padding: 1rem;
   gap:2rem;
   justify-content: end;
-  border-bottom: 1px solid gray;
+  border-bottom: 1px solid var(--dark-color);
   align-items: center;
   display: flex;
 }

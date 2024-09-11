@@ -3,7 +3,28 @@
   width: 100%;
   min-height: 100vh;
 }
-
+.search-note{
+  width: 60%;
+  margin: 1rem 0 2rem;
+  background-color: var(--tertiary-color);
+  margin-inline: auto;
+  border-radius: 3rem;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  padding: .75rem 2rem;
+  gap: 1rem;
+  color: var(--dark-color);
+}
+.search-note input {
+  outline: none;
+  color: var(--dark-color);
+  border: none;
+  background-color: transparent;
+  padding: .5rem 0;
+  width: 100%;
+  border-bottom: 1px solid var(--dark-color);
+}
 
 /* ---------------------------------------------------- */
 /* EDIT */
@@ -252,6 +273,7 @@
 .deletedNotes-btnContainer{
   display: flex;
   gap: 1rem;
+  margin: 1rem 0;
 }
 .empty-deletedNotes{
   margin: 5rem 2rem;

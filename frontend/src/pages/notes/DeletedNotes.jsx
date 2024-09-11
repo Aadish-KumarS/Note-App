@@ -4,6 +4,7 @@ import NoteCard from '../../components/NoteCard/NoteCard';
 import { MdOutlineDeleteForever, MdOutlineRestorePage } from 'react-icons/md';
 import PopupCard from '../../components/PopupCard/PopupCard';
 import { IoAlertCircleOutline } from 'react-icons/io5';
+import { filter } from '../../utils/functions';
 
 
 const DeletedNotes = (props) => {
@@ -14,21 +15,23 @@ const DeletedNotes = (props) => {
     setShowAlertPopup,
     setPopupAction,
     onConfirm,
-    onCancel
+    onCancel,
+    filterNotes
   } = props
   const [deletedNotes, setDeletedNotes] = useState([]);
 
   useEffect(() => {
     const fetchDeletedNotes = async () => {
       try {
-        const deletedNotes = await axios.get('http://localhost:5001/api/deleted-notes/all')
-        setDeletedNotes(deletedNotes.data.data)
+        const deletedNotes = await axios.get('http://localhost:5001/api/deleted-notes/all');
+        const data = deletedNotes.data.data
+        filter(filterNotes,data,setDeletedNotes);
       } catch (error) {
         console.log('Error fetching deleted notes:', error.message);
       }
     }
     fetchDeletedNotes()
-  },[]);
+  },[filterNotes]);
 
   const handleDeleteAllNote = () => {
     setShowAlertPopup(true);

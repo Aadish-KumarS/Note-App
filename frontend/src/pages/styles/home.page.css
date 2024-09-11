@@ -8,8 +8,12 @@
   width: 100%;
   display: flex;
   gap:1rem;
+  height: inherit;
 }
 
+.search-btn{
+  cursor: pointer;
+}
 .home_conatiner-menu{
   background-color: var(--tertiary-color);
   min-width: 22vw;
@@ -20,8 +24,8 @@
 .home_conatiner-route{
   background-color: var(--primary-color);
   width: 100%;
+  min-height: 95%;
   margin: 1rem;
   border-radius: 1rem;
   padding: 1rem;
-  margin-top: 3rem;
 }

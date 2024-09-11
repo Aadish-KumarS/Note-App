@@ -14,7 +14,7 @@ const Home = (props) => {
 
 
   document.body.className = theme;
-
+  
 
 
   return (
@@ -27,12 +27,13 @@ const Home = (props) => {
       }
       <div className='home_conatiner-route'>
         <Routes>
-          <Route path="/notes/*" element={<Notes/>} />
+          <Route path="/notes/*" element={ <Notes/>} />
           <Route path='' element={<h1>hello</h1>} />
           <Route path="/construction" element={<Construction />}/>
           <Route path="/theme" element={<ThemeToggle />}/>
         </Routes>
       </div>
+
       </div>
     </section>
   )

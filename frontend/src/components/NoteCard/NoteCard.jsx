@@ -27,7 +27,6 @@ const NoteCard = ({notes,setNotes,handleDeleteNote,isDeleted = false}) => {
     } catch (error) {
       console.error("Error updating note importance:", error);
     }
-    console.log('yess')
   };
 
   return (
@@ -82,7 +81,7 @@ const NoteCard = ({notes,setNotes,handleDeleteNote,isDeleted = false}) => {
                 {
                   isDeleted 
                     ? <MdOutlineRestorePage className="icon restore-btn" />
-                    : <IoTrashSharp onClick={(id)=> handleDeleteNote(note._id)} className="icon delete-btn" />
+                    : <IoTrashSharp onClick={()=> handleDeleteNote(note._id,setNotes)} className="icon delete-btn" />
                 }
                 
               </div>
