@@ -2,11 +2,11 @@ import { useEffect, useState } from "react"
 import axios from 'axios';
 import '../styles/notes.css'
 import NoteCard from "../../components/NoteCard/NoteCard";
-import { filter } from "../../utils/functions";
+import { filter } from "../../utils/eventHandlers.js";
 
 
 
-const NotesList = ({filterNotes,handleDeleteNote}) => {
+const NotesList = ({filterNotes}) => {
   const [notes, setNotes] = useState([]);
 
   useEffect(() => { 
@@ -19,7 +19,6 @@ const NotesList = ({filterNotes,handleDeleteNote}) => {
         console.error('Error fetching notes:', error.message);
       }
     };
-
     fetchNotes();
   }, [filterNotes]);
   
@@ -32,7 +31,6 @@ const NotesList = ({filterNotes,handleDeleteNote}) => {
         <NoteCard 
           notes={notes} 
           setNotes={setNotes} 
-          handleDeleteNote={handleDeleteNote}
         />
       </div>
     </div>

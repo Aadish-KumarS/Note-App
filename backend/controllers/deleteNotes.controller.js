@@ -51,3 +51,36 @@ export const deleteAllNotes = async (req, res) => {
     })
   }
 }
+
+export const getOneDeletedNote = async (req,res) =>{
+  try {
+    const {id} = req.params
+    const deleteNote = await DeletedNote.findById(id);
+    res.status(200).json({
+      success: true,
+      data: deleteNote
+    })
+  } catch (error) {
+    console.log('Error fetching deleted note',error.message);
+    res.status(404).json({
+      success: false,
+      message: error.message
+    })
+  }
+}
+
+export const deleteOne = async (req,res) => {
+  try {
+    const {id} = req.params
+    await DeletedNote.findByIdAndDelete(id);
+    res.status(200).json({
+      success: true,
+    })
+  } catch (error) {
+    console.log('Error deleting note',error.message);
+    res.status(404).json({
+      success: false,
+      message: error.message
+    })
+  }
+}

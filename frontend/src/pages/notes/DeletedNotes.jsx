@@ -4,7 +4,7 @@ import NoteCard from '../../components/NoteCard/NoteCard';
 import { MdOutlineDeleteForever, MdOutlineRestorePage } from 'react-icons/md';
 import PopupCard from '../../components/PopupCard/PopupCard';
 import { IoAlertCircleOutline } from 'react-icons/io5';
-import { filter } from '../../utils/functions';
+import { filter, handleCancel, handleConfirm } from '../../utils/eventHandlers.js';
 
 
 const DeletedNotes = (props) => {
@@ -14,8 +14,6 @@ const DeletedNotes = (props) => {
     popupAction,
     setShowAlertPopup,
     setPopupAction,
-    onConfirm,
-    onCancel,
     filterNotes
   } = props
   const [deletedNotes, setDeletedNotes] = useState([]);
@@ -36,9 +34,7 @@ const DeletedNotes = (props) => {
   const handleDeleteAllNote = () => {
     setShowAlertPopup(true);
     setPopupAction('delete')
-
   }
-
 
   const handleRestoreAllNote =  () => {
     setShowAlertPopup(true);
@@ -68,8 +64,8 @@ const DeletedNotes = (props) => {
           <div>
             <PopupCard 
               title={popupAction}
-              onConfirm={onConfirm}
-              onCancel={onCancel}
+              onConfirm={() => handleConfirm(deletedNotes, setDeletedNotes,popupAction,setShowAlertPopup,setPopupAction)}
+              onCancel={() => handleCancel(setShowAlertPopup)}
               deletedNotes={deletedNotes}
               setDeletedNotes={setDeletedNotes}
               />

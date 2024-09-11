@@ -5,29 +5,12 @@ import { BsPencilSquare } from "react-icons/bs";
 import { FaRegStar, FaStar } from "react-icons/fa";
 import { MdOutlineRestorePage } from "react-icons/md";
 import './noteCard.css'
-import axios from 'axios';
+import { deleteNote, handleRestoreOne, handleSetImportant } from "../../utils/eventHandlers";
 
-const NoteCard = ({notes,setNotes,handleDeleteNote,isDeleted = false}) => {
+const NoteCard = ({notes,setNotes,isDeleted = false}) => {
   
 
-  const handleSetImportant =  (note) => {
-    try {
-      const updatedNote = { ...note, isImportant: !note.isImportant };
-      axios.put(`http://localhost:5001/api/notes/edit/${note._id}`, {
-        ...note,
-        isImportant: updatedNote.isImportant
-      });
-      setNotes((prevNotes) =>
-        prevNotes.map((prevNote) =>
-          prevNote._id === note._id 
-            ? { ...prevNote, isImportant: updatedNote.isImportant } 
-            : prevNote
-        )
-      );
-    } catch (error) {
-      console.error("Error updating note importance:", error);
-    }
-  };
+  
 
   return (
     <>
@@ -44,11 +27,11 @@ const NoteCard = ({notes,setNotes,handleDeleteNote,isDeleted = false}) => {
                     {
                       note.isImportant 
                         ? <FaStar 
-                            onClick={() => handleSetImportant(note)} 
+                            onClick={() => handleSetImportant(note,setNotes)} 
                             className="icon star-btn" 
                           /> 
                         : <FaRegStar 
-                            onClick={() => handleSetImportant(note)} 
+                            onClick={() => handleSetImportant(note,setNotes)} 
                             className="icon star-btn" 
                           />
                     }
@@ -80,8 +63,14 @@ const NoteCard = ({notes,setNotes,handleDeleteNote,isDeleted = false}) => {
               <div className="notescard-sec4">
                 {
                   isDeleted 
-                    ? <MdOutlineRestorePage className="icon restore-btn" />
-                    : <IoTrashSharp onClick={()=> handleDeleteNote(note._id,setNotes)} className="icon delete-btn" />
+                    ? <MdOutlineRestorePage  
+                        className="icon restore-btn" 
+                        onClick={() =>{ handleRestoreOne(note._id,setNotes)}}
+                      />
+                    : <IoTrashSharp 
+                        onClick={()=> deleteNote(note._id,setNotes)} 
+                        className="icon delete-btn" 
+                      />
                 }
                 
               </div>

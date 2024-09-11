@@ -6,11 +6,11 @@ import { MdOutlineSaveAs } from 'react-icons/md';
 import { useNavigate } from 'react-router-dom';
 import TagColorPicker from '../../components/TagColorPicker/TagColorPicker';
 import { IoClose } from 'react-icons/io5';
+import { handleAddTag, handleDeleteTag, handleSelectColor, handleTagClick } from '../../utils/eventHandlers';
 
 
-const CreateNote = (props) => {
+const CreateNote = () => {
 
-  const {handleAddTag,handleSelectColor,handleTagClick,handleDeleteTag} = props
   const navigate  = useNavigate();
   const [newNote, setNewNote] = useState({
     title: "Untitled",
@@ -57,7 +57,7 @@ const CreateNote = (props) => {
         </div>
         <div className="newNote-section3">
           <TagColorPicker 
-            handleAddTag={(tag) => handleAddTag(tag,setNewNote,newNote)}
+            handleAddTag={(tag) => handleAddTag(tag,setNewNote)}
             handleSelectColor={(color) => handleSelectColor(color,setNewNote,activeTag)}
           />
         </div>

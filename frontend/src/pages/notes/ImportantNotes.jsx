@@ -1,11 +1,11 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import NoteCard from '../../components/NoteCard/NoteCard';
-import { filter } from '../../utils/functions';
+import { filter } from '../../utils/eventHandlers.js';
 
 
 
-const ImportantNotes = ({filterNotes,handleDeleteNote}) => {
+const ImportantNotes = ({filterNotes}) => {
 
   const [notes, setNotes] = useState([])
 
@@ -27,7 +27,7 @@ const ImportantNotes = ({filterNotes,handleDeleteNote}) => {
   return (
     <section className='important-notes'>
       {notes ? 
-        <NoteCard notes={notes} setNotes={setNotes} handleDeleteNote={handleDeleteNote}/> :
+        <NoteCard notes={notes} setNotes={setNotes}/> :
         "nthg"
       }
     </section>

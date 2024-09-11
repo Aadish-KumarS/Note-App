@@ -1,16 +1,16 @@
 import axios from "axios"
 import { useEffect, useState } from "react"
-import { Link, useNavigate, useParams } from "react-router-dom"
-import { MdOutlineSaveAs } from "react-icons/md";
+import { useNavigate, useParams } from "react-router-dom"
+import { MdOutlineCancel, MdOutlineSaveAs } from "react-icons/md";
 import TextareaAutosize from 'react-textarea-autosize';
-import { IoTrashSharp ,IoClose} from "react-icons/io5";
+import { IoClose} from "react-icons/io5";
 import TagColorPicker from "../../components/TagColorPicker/TagColorPicker";
 import { FaRegStar, FaStar } from "react-icons/fa";
+import { handleAddTag, handleDeleteTag, handleGoBack, handleSelectColor, handleSetImportant, handleTagClick } from "../../utils/eventHandlers";
 
 
-const EditNote = (props) => {
+const EditNote = () => {
 
-  const {handleAddTag,handleSelectColor,handleTagClick,handleDeleteTag} = props;
   const {id} = useParams();
   const [editNote, setEditNote] = useState({
     title: "",
@@ -55,11 +55,11 @@ const EditNote = (props) => {
         {
           editNote.isImportant 
             ? <FaStar 
-                onClick={() => handleSetImportant(note)} 
+                onClick={() => handleSetImportant(editNote,setEditNote)} 
                 className="icon star-btn" 
               /> 
             : <FaRegStar 
-                onClick={() => handleSetImportant(note)} 
+                onClick={() => handleSetImportant(editNote,setEditNote)} 
                 className="icon star-btn" 
               />
         }
@@ -69,10 +69,8 @@ const EditNote = (props) => {
           Save
           <MdOutlineSaveAs className="icon save-btn"/>
         </button>
-        <button>
-          <Link to={`/notes/delete/${id}`}>
-            <IoTrashSharp className="icon delete-btn" />
-          </Link>
+        <button onClick={() =>handleGoBack(navigate)}>
+          Cancle <MdOutlineCancel className="icon delete-btn" />
         </button>
       </div>
       <div className="editNote_container">
@@ -96,7 +94,7 @@ const EditNote = (props) => {
 
         <div className="editNote-section3">
           <TagColorPicker 
-            handleAddTag={(tag) => handleAddTag(tag,setEditNote,editNote)}
+            handleAddTag={(tag) => handleAddTag(tag,setEditNote)}
             handleSelectColor={(color) => handleSelectColor(color,setEditNote,activeTag)}
             editNote={editNote}
           />
