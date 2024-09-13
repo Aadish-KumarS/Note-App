@@ -163,3 +163,4 @@ export const handleRestoreOne = async (id, setNotes) => {
     console.error('Error restoring the note:', error.message);
   }
 };
+
