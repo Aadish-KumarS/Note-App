@@ -74,3 +74,7 @@
   color: var(--neon-purple);
   cursor: pointer;
 }
+.preview-btn{
+  cursor: pointer;
+  color: var(--neon-blue);
+}

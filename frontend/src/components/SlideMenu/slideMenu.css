@@ -1,13 +1,13 @@
 .menu{
   margin: 1rem;
 }
-.menu-section3{
+.menu-section{
   display: flex;
   flex-direction: column;
   width: 100%;
   gap: 1rem;
 }
-.section3-item{
+.section-item{
   background-color: var(--secondary-color);
   padding: .5rem .75rem;
   border-radius: .75rem;
@@ -21,7 +21,7 @@
   border-bottom-left-radius: 0;
   border-bottom-right-radius: 0;
 }
-.section3-item a{
+.section-item a{
   color: var(--dark-color);
   font-weight: 800;
 }

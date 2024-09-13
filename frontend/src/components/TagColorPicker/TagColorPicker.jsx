@@ -30,8 +30,8 @@ const TagColorPicker = (props) => {
                   <div 
                     key={i} 
                     className="tag-color" 
-                    style={{backgroundColor: color}}
-                    onClick={() => handleSelectColor(color,i)}
+                    style={{backgroundColor: color.color}}
+                    onClick={() => handleSelectColor(color.color,i)}
                   >
                   </div>
                 )

@@ -1,9 +1,10 @@
 import { Note } from "../models/notes.model.js";
+import { User } from "../models/user.model.js";
 
 export const getAllNotes = async(req ,res) => {
   try {
-
-    const data = await Note.find({})
+    
+    const data = await Note.find({user: req.userId})
 
     res.status(200).json({
       success: true,
@@ -23,7 +24,7 @@ export const getAllNotes = async(req ,res) => {
 export const getOneNote = async(req, res) => {
   try {
     const {id} = req.params;
-    const note = await Note.findById(id)
+    const note = await Note.findById({ _id: id, user: req.userId })
 
     if(!note){
       return res.status(404).json({success: false, message: "Item not found"})
@@ -49,13 +50,16 @@ export const createNote = async(req ,res) => {
       return res.status(500).json({success: false, message: "Provide title or content"})
     }
 
+    console.log(req.userId)
     // new intance and model
-    const newNote = {
-      title: title,
-      content: content,
-      tags: tags
-    }
-    const note = await Note.create(newNote)
+    const newNote = new Note({
+      title,
+      content,
+      tags,
+      user: req.userId
+    })
+    const note = await newNote.save();
+    await User.findByIdAndUpdate(req.userId, { $push: { notes: note._id } });
 
     res.status(200).json({success: true, data: note})
   } catch (error) {
@@ -71,7 +75,7 @@ export const createNote = async(req ,res) => {
 export const deleteNote = async (req,res) => {
   try {
     const {id} = req.params
-    const deleteItem = await Note.findByIdAndDelete(id)
+    const deleteItem = await Note.findByIdAndDelete({ _id: id, user: req.userId })
 
     if(!deleteItem){
       return res.status(404).send({
@@ -107,7 +111,11 @@ export const editNote = async (req, res) => {
       updateFields.$pull = {tags: {$in: updateFields.tagToDelete}};
     } 
 
-    const result = await Note.findByIdAndUpdate(id,updateFields,{ new: true })
+    const result = await Note.findByIdAndUpdate(
+      { _id: id, user: req.userId }
+      ,updateFields,
+      { new: true }
+    )
 
     if(!result){
       return res.status(404).send({message: "Book not found"})

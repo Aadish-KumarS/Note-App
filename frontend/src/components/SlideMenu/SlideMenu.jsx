@@ -2,11 +2,11 @@ import { Link } from "react-router-dom"
 import './slideMenu.css'
 import { IoIosArrowForward } from "react-icons/io";
 import { AiOutlinePlusCircle } from "react-icons/ai";
-import { PiPencilSimpleBold } from "react-icons/pi";
 import { FaRegStar } from "react-icons/fa";
 import { MdAutoDelete } from "react-icons/md";
 import { FaRegNoteSticky } from "react-icons/fa6";
-
+import { PiTagBold } from "react-icons/pi";
+import { tagsColor } from "../../constants/constants";
 
 const SlideMenu = () => {
 
@@ -15,10 +15,9 @@ const SlideMenu = () => {
     <section className="menu">
       <div></div>
       <div></div>
-      <hr />
-      <div className="menu-section3">
+      <div className="menu-section">
         <div className="menu-notes">
-          <div className="section3-item">
+          <div className="section-item">
             Notes 
             <IoIosArrowForward
               className={`icon arrow `}
@@ -38,12 +37,6 @@ const SlideMenu = () => {
                 Create new Note <AiOutlinePlusCircle className="icon" />
               </Link>
             </div>
-            {/* <div>
-              <Link  className="notes-list-item" to={'/construction'}>
-                Edit a Note 
-                <PiPencilSimpleBold   className="icon" />
-              </Link>
-            </div> */}
             <div>
               <Link  to={'/notes/deleted-notes'} className="notes-list-item">
                 Delete Notes 
@@ -58,17 +51,35 @@ const SlideMenu = () => {
             
           </div>
         </div>
-        <Link 
-          className="section3-item" 
-          to={'/construction'}
-        > 
-          Todo <IoIosArrowForward className="icon arrow" />
-        </Link>
+
+        <div className="menu-notes">
+          <div className="section-item">
+            Tag Color 
+            <PiTagBold
+              className={`icon  `}
+            />
+          </div>
+          <div className="notes-list">
+            {tagsColor.map((color,i) => {
+              return(
+                <div className="notes-list-item" style={{background: color.color}} key={i}> 
+                  {color.name}
+                </div>
+              )
+            })}
+          </div>
+        </div>
+
+        <div className="menu-notes">
+          <Link 
+            className="section-item" 
+            to={'/construction'}
+          > 
+            Todo <IoIosArrowForward className="icon arrow" />
+          </Link>
+        </div>
       </div>
-      <hr />
-      <div>
-        
-      </div>
+
     </section>
   )
 }

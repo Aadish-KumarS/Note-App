@@ -15,7 +15,10 @@ export const themeMenu =[
 ]
 
 export const tagsColor = [
-  "#bfe7f6", "	#e3b7d2",
-  "#f6cebf","	#f5c27d",
-  "#ffe666","	#f0fff0"
+  { name: "Sky Blue", color: "#bfe7f6" },
+  { name: "Blush Pink", color: "#e3b7d2" },
+  { name: "Peach Cream", color: "#f6cebf" },
+  { name: "Soft Amber", color: "#f5c27d" },
+  { name: "Sunflower Yellow", color: "#ffe666" },
+  { name: "Honeydew Green", color: "#f0fff0" }
 ]

@@ -4,6 +4,7 @@ import { IoTrashSharp } from "react-icons/io5";
 import { BsPencilSquare } from "react-icons/bs";
 import { FaRegStar, FaStar } from "react-icons/fa";
 import { MdOutlineRestorePage } from "react-icons/md";
+import { RiFileInfoLine } from "react-icons/ri";
 import './noteCard.css'
 import { deleteNote, handleRestoreOne, handleSetImportant } from "../../utils/eventHandlers";
 
@@ -35,7 +36,9 @@ const NoteCard = ({notes,setNotes,isDeleted = false}) => {
                             className="icon star-btn" 
                           />
                     }
-                    
+                    <Link to={'/construction'}>
+                      <RiFileInfoLine className="icon preview-btn"  />
+                    </Link>
                   </div>
                 }
 

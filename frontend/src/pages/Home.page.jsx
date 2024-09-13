@@ -5,6 +5,7 @@ import SlideMenu from '../components/SlideMenu/SlideMenu'
 import './styles/home.page.css'
 import Construction from '../components/Construction/Construction'
 import ThemeToggle from './ThemeToggle'
+import Hero from '../components/Hero/Hero'
 
 const Home = (props) => {
   
@@ -28,7 +29,7 @@ const Home = (props) => {
       <div className='home_conatiner-route'>
         <Routes>
           <Route path="/notes/*" element={ <Notes/>} />
-          <Route path='' element={<h1>hello</h1>} />
+          <Route path='' element={<Hero />} />
           <Route path="/construction" element={<Construction />}/>
           <Route path="/theme" element={<ThemeToggle />}/>
         </Routes>
