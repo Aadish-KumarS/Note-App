@@ -1,6 +1,8 @@
 import axios from 'axios'; 
+import {useNavigate} from 'react-router-dom'
 
-export const handleSubmit = async (e,formValidation,formData,setErrors,setSuccessMessage,setErrorMessage,setFormData) => {
+
+export const handleSubmitRegister = async (e,formValidation,formData,setErrors,setSuccessMessage,setErrorMessage,setFormData) => {
   e.preventDefault();
   const validationErrors = formValidation(formData);
 
@@ -14,14 +16,11 @@ export const handleSubmit = async (e,formValidation,formData,setErrors,setSucces
 
   try {
     // API request to register user (adjust URL and request body as per your backend)
-    const response = await axios.post( 'http://localhost:5001/api/auth/register', {
+    await axios.post( 'http://localhost:5001/api/auth/register', {
       name: formData.name,
       email: formData.email,
       password: formData.password,
     });
-    // const { token } = response;
-    console.log(response)
-    // localStorage.setItem('authToken', token);
 
     // Success response
     setSuccessMessage('Registration successful!');
@@ -33,5 +32,33 @@ export const handleSubmit = async (e,formValidation,formData,setErrors,setSucces
     setErrorMessage(error.response?.data?.message || 'Registration failed. Please try again.');
     setSuccessMessage('');
     console.error('API Error:', error); // Optional: Log the error for debugging
+  }
+};
+
+
+export const handleSubmitLogin = async (e,formData,setSuccessMessage,setErrorMessage,setFormData) => {
+  e.preventDefault();
+
+
+  try {
+    // Make API request to login
+    const response = await axios.post('http://localhost:5001/api/auth/login', formData); // Replace with your login API endpoint
+    const { token } = response.data;
+
+    console.log(token)
+    // Save token to localStorage or cookies
+    localStorage.setItem('authToken', token);
+
+    setSuccessMessage('Login successful!');
+    setErrorMessage('');
+    // Reset form data
+    setFormData({ email: '', password: '' });
+
+    // Redirect to a protected route if needed (e.g., dashboard)
+
+  } catch (error) {
+    console.error(error);
+    setErrorMessage(error.response?.data?.message || 'Login failed. Please check your credentials.');
+    setSuccessMessage('');
   }
 };

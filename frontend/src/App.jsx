@@ -3,6 +3,7 @@ import { useState } from "react"
 import NavBar from "./components/NavBar/NavBar"
 import { Route, Routes } from "react-router-dom";
 import Register from "./pages/auth page/Register";
+import Login from "./pages/auth page/Login";
 
 
 function App() {
@@ -14,6 +15,7 @@ function App() {
       <Home isSlideMenuActive={isSlideMenuActive} />
       <Routes>
         <Route path="/register" element={<Register/>}/>
+        <Route path="/login" element={<Login/>}/>
       </Routes>
     </section>
   )

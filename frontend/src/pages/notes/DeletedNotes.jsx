@@ -17,11 +17,17 @@ const DeletedNotes = (props) => {
     filterNotes
   } = props
   const [deletedNotes, setDeletedNotes] = useState([]);
+  const token = localStorage.getItem('authToken');
+
 
   useEffect(() => {
     const fetchDeletedNotes = async () => {
       try {
-        const deletedNotes = await axios.get('http://localhost:5001/api/deleted-notes/all');
+        const deletedNotes = await axios.get('http://localhost:5001/api/deleted-notes/all',{
+          headers:{
+            Authorization: `Bearer ${token}`,
+          }
+        });
         const data = deletedNotes.data.data
         filter(filterNotes,data,setDeletedNotes);
       } catch (error) {

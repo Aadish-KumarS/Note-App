@@ -19,13 +19,23 @@ const CreateNote = () => {
   });
   const [activeTag, setActiveTag] = useState('')
   
-  const handleCreate = () => {
-    axios.post('http://localhost:5001/api/notes/create',newNote)
-      .then(() => {
-        navigate('/notes')
-      })
-      .catch(err => console.log(err))
-  }
+  const handleCreate = async () => {
+    try {
+      const token = localStorage.getItem('authToken');
+      await axios.post(
+        'http://localhost:5001/api/notes/create',
+        newNote,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      navigate('/notes');
+    } catch (err) {
+      console.error(err);
+    }
+  };
 
 
   return (

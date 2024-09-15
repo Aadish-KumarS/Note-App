@@ -3,7 +3,9 @@ import '../styles/auth.pages.css';
 import { FaRegUser } from "react-icons/fa";
 import { MdMailOutline, MdPassword } from "react-icons/md";
 import { formValidation } from '../../utils/formValidation';
-import { handleSubmit } from '../../services/auth.service';
+import { handleSubmitRegister } from '../../services/auth.service';
+import {Link, useNavigate} from 'react-router-dom'
+
 
 const Register = () => {
   const [formData, setFormData] = useState({
@@ -15,6 +17,9 @@ const Register = () => {
   const [errors, setErrors] = useState({});
   const [successMessage, setSuccessMessage] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
+
+  const navigate = useNavigate();
+
 
   // Handle input changes
   const handleChange = (e) => {
@@ -33,7 +38,10 @@ const Register = () => {
     <div className="register">
       <form 
         className='register-form' 
-        onSubmit={(e) => handleSubmit(e,formValidation,formData,setErrors,setSuccessMessage,setErrorMessage,setFormData)}
+        onSubmit={(e) =>{
+          handleSubmitRegister(e,formValidation,formData,setErrors,setSuccessMessage,setErrorMessage,setFormData)
+          navigate('/')
+        }}
       >
         <h1>User Register</h1>
         <div className="form-group">
@@ -93,6 +101,12 @@ const Register = () => {
         {successMessage && <p className="success">{successMessage}</p>}
         {errorMessage && <p className="error">{errorMessage}</p>}
       </form>
+      <Link to={'/login'}>
+        Alerady a user? <span>Login</span>
+      </Link>
+      <Link to={'/'}>
+        Back
+      </Link>
     </div>
   );
 }

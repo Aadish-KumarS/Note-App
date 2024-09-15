@@ -12,6 +12,7 @@ import { handleAddTag, handleDeleteTag, handleGoBack, handleSelectColor, handleS
 const EditNote = () => {
 
   const {id} = useParams();
+  const token = localStorage.getItem('authToken');
   const [editNote, setEditNote] = useState({
     title: "",
     content: "",
@@ -27,7 +28,13 @@ const EditNote = () => {
 
 
   useEffect(() => {
-    axios.get(`http://localhost:5001/api/notes/get-one/${id}`)
+    axios.get(`http://localhost:5001/api/notes/get-one/${id}`,
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    )
     .then(res => {
       setEditNote(res.data.data)
     })
@@ -38,7 +45,13 @@ const EditNote = () => {
   
   
   const handleSave = () => {
-    axios.put(`http://localhost:5001/api/notes/edit/${id}`,editNote)
+    axios.put(`http://localhost:5001/api/notes/edit/${id}`,editNote,
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    )
       .then(() => {
         navigate('/notes')
       })

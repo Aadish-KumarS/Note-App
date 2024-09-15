@@ -3,7 +3,7 @@ import { LuMenuSquare } from "react-icons/lu";
 import {Link, useLocation} from 'react-router-dom'
 import './navBar.css'
 import { IoColorPalette } from "react-icons/io5";
-
+import { MdOutlineAccountCircle } from "react-icons/md";
 
 const NavBar = ({setIsSlideMenuActive,}) => {
 
@@ -38,6 +38,9 @@ const NavBar = ({setIsSlideMenuActive,}) => {
         <div className="nav_section3">
             <Link  to={'/theme'}>
               <IoColorPalette className='icon theme-btn' />
+            </Link>
+            <Link to={'/register'}>
+              <MdOutlineAccountCircle className="icon acc-btn"/>
             </Link>
         </div>
       </nav>

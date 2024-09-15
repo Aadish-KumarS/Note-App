@@ -9,8 +9,8 @@ import './noteCard.css'
 import { deleteNote, handleRestoreOne, handleSetImportant } from "../../utils/eventHandlers";
 
 const NoteCard = ({notes,setNotes,isDeleted = false}) => {
-  
 
+  const token = localStorage.getItem('authToken');
   
 
   return (
@@ -71,7 +71,7 @@ const NoteCard = ({notes,setNotes,isDeleted = false}) => {
                         onClick={() =>{ handleRestoreOne(note._id,setNotes)}}
                       />
                     : <IoTrashSharp 
-                        onClick={()=> deleteNote(note._id,setNotes)} 
+                        onClick={()=> deleteNote(note._id,setNotes,token)} 
                         className="icon delete-btn" 
                       />
                 }

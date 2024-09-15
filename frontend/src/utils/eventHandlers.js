@@ -16,18 +16,32 @@ export const filter = (filterNotes,data,setNotes) => {
 }
 
 
-export const deleteNote = async (id,setNotes) => {
+export const deleteNote = async (id,setNotes,token) => {
   try {
-    const delteNote =  await axios.get(`http://localhost:5001/api/notes/get-one/${id}`);
+    const delteNote =  await axios.get(`http://localhost:5001/api/notes/get-one/${id}`,{
+      headers:{
+        Authorization: `Bearer ${token}`,
+      }
+    });
+    const note = delteNote.data.data
     const data = {
-      title: delteNote.data.data.title,
-      content: delteNote.data.data.content,
-      isImportant :  delteNote.data.data.isImportant,
-      _id: delteNote.data.data._id,
-      tags: [...delteNote.data.data.tags]
+      title: note.title,
+      content: note.content,
+      isImportant :  note.isImportant,
+      _id: note._id,
+      tags: [...note.tags],
+      user: note.user,   
     } ;
-    await axios.post('http://localhost:5001/api/deleted-notes/post',data)
-    await axios.delete(`http://localhost:5001/api/notes/delete/${id}`)
+    await axios.post('http://localhost:5001/api/deleted-notes/post',data,{
+      headers:{
+        Authorization: `Bearer ${token}`,
+      }
+    })
+    await axios.delete(`http://localhost:5001/api/notes/delete/${id}`,{
+      headers:{
+        Authorization: `Bearer ${token}`,
+      }
+    })
     setNotes((prev) => prev.filter((n) => n._id !== id));
   } catch (error) {
     console.error('Error handling delete notes notes:', error.message);

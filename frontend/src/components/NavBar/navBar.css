@@ -45,3 +45,10 @@
   display: flex;
   align-items: center;
 }
+.nav_section3{
+  gap: 1rem;
+}
+.acc-btn {
+  color: var(--color);
+  cursor: pointer;
+}
