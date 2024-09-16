@@ -2,11 +2,12 @@ import {   useEffect, useState } from 'react';
 import './styles/themeToggle.css'
 import { BiSolidCoffeeBean } from "react-icons/bi";
 import { FaYinYang } from "react-icons/fa6";
-import { MdLightMode } from "react-icons/md";
 import { themeMenu } from '../constants/constants';
 import { IoIosSwitch } from "react-icons/io";
 import { TbSunset2 } from "react-icons/tb";
 import { Link } from 'react-router-dom';
+import gsap from 'gsap'
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 
 gsap.registerPlugin(ScrollTrigger);
@@ -17,7 +18,7 @@ const ThemeToggle = () => {
   const iconMap = {
     coffee: BiSolidCoffeeBean,
     bw: FaYinYang,
-    eveSkyShade: MdLightMode,
+    sunsetBlush: TbSunset2,
   };
 
   useEffect(() => {
@@ -33,6 +34,9 @@ const ThemeToggle = () => {
 
   return (
     <section className='themeToggle'>
+      <Link to={'/'}>
+        Back
+      </Link>
       {themeMenu.map((theme, i) => {
         const IconComponent = iconMap[theme.icons];
         return (
@@ -47,11 +51,17 @@ const ThemeToggle = () => {
               </div>
             </div>
             <div className='theme-info'>
-              <button className='switch-btn' onClick={() => handleThemeChange(theme.icons)}>
-                  <IoIosSwitch className='icon swtich'/>
-              </button>
+              <div>
+                <button className='switch-btn' onClick={() => handleThemeChange(theme.icons)}>
+                    <IoIosSwitch className='icon swtich'/> 
+                </button>
+                <strong>Click here to switch</strong>
+              </div>
               <div>
                 {theme.info}
+              </div>
+              <div className='theme-img'>
+                <img src={theme.img} />
               </div>
             </div>
           </div>

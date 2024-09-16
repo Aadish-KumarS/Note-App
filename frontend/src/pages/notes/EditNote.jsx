@@ -68,11 +68,11 @@ const EditNote = () => {
         {
           editNote.isImportant 
             ? <FaStar 
-                onClick={() => handleSetImportant(editNote,setEditNote)} 
+                onClick={() => handleSetImportant(editNote,setEditNote,token)} 
                 className="icon star-btn" 
               /> 
             : <FaRegStar 
-                onClick={() => handleSetImportant(editNote,setEditNote)} 
+                onClick={() => handleSetImportant(editNote,setEditNote,token)} 
                 className="icon star-btn" 
               />
         }

@@ -14,9 +14,9 @@
 .intro{
   width: 90%;
   font-size: 1.5rem;
-  margin: 1.5rem 0;
+  margin: 4.5rem 0;
   background-color: var(--dark-color);
-  padding: 1.5rem;
+  padding: 3rem;
   line-height: 3rem;
   border-radius: 1rem;
   opacity: 0;
@@ -47,6 +47,9 @@
   position: relative;
   z-index: 10;
 }
+.section-2{
+  opacity: 0 ;
+}
 .bg-note{
   position: absolute;
   font-size: 30rem;
@@ -62,12 +65,14 @@
   background-color: var(--dark-color);
   padding: 2rem;
   border-radius: 1rem;
+  opacity: 0;
+  transform: translateY(20px);
 }
 .section-3 p{
   margin-bottom: 3rem;
 }
 .startUsing-btn{
-  background-color: var(--tertiary-color);
+  background-color: white;
   padding: .75rem 1.5rem;
   border-radius: 3rem;
   color: var(--dark-color);

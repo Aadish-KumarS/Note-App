@@ -1,16 +1,19 @@
 export const themeMenu =[
   { name: 'Coffee',
     icons: 'coffee',
-    info: 'This is coffee theme'
+    info: 'This is coffee theme',
+    img: '/coffee-theme.png'
   },
   { name: 'Black&White',
     icons: 'bw',
-    info: 'This is BW theme'
+    info: 'This is BW theme',
+    img: '/bw-theme.png'
 
   },
-  { name: "Evening sky' shade",
-    icons: 'eveSkyShade',
-    info: 'This is light theme'
+  { name: "Sunset Blush",
+    icons: 'sunsetBlush',
+    info: 'This is Sunset Blush theme',
+    img: '/sunset-theme.png'
   },
 ]
 

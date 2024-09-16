@@ -2,7 +2,7 @@ import '../styles/auth.pages.css';
 import { MdMailOutline, MdPassword } from "react-icons/md";
 import { useState } from 'react';
 import {handleSubmitLogin} from '../../services/auth.service'
-import { useNavigate } from 'react-router-dom';
+import {Link, useNavigate } from 'react-router-dom';
 
 const Login = () => {
   const [formData, setFormData] = useState({
@@ -65,6 +65,9 @@ const Login = () => {
           Login
         </button>
       </form>
+      <Link to={'/profile'}>
+        Back
+      </Link>
     </div>
   )
 }

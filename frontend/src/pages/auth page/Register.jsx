@@ -101,10 +101,10 @@ const Register = () => {
         {successMessage && <p className="success">{successMessage}</p>}
         {errorMessage && <p className="error">{errorMessage}</p>}
       </form>
-      <Link to={'/login'}>
+      <Link to={'/profile/login'}>
         Alerady a user? <span>Login</span>
       </Link>
-      <Link to={'/'}>
+      <Link to={'/profile'}>
         Back
       </Link>
     </div>

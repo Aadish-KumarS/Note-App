@@ -44,3 +44,12 @@ export const registerUser = async (req, res) => {
     res.status(400).json({ success: false, message: error.message });
   }
 };
+
+export const logout = (req, res) => {
+  try {
+    res.status(200).json({ success: true, message: 'Logged out successfully' });
+  } catch (error) {
+    console.error('Logout Error:', error.message);
+    res.status(500).json({ success: false, message: 'An error occurred while logging out' });
+  }
+};

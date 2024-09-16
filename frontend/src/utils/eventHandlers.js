@@ -96,12 +96,16 @@ export const handleTagClick = (id,activeTag,setActiveTag) => {
 };
 
 
-export const handleSetImportant = async (note, setNotes) => {
+export const handleSetImportant = async (note, setNotes,token) => {
   try {
     const updatedNote = { ...note, isImportant: !note.isImportant };
     await axios.put(`http://localhost:5001/api/notes/edit/${note._id}`, {
       ...note,
       isImportant: updatedNote.isImportant,
+    },{
+      headers:{
+        Authorization: `Bearer ${token}`,
+      }
     });
 
     setNotes((prevNotes) => {

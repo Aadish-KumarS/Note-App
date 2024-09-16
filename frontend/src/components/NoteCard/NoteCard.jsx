@@ -40,11 +40,11 @@ const NoteCard = ({notes,setNotes,isDeleted = false}) => {
                     {
                       note.isImportant 
                         ? <FaStar 
-                            onClick={() => handleSetImportant(note,setNotes)} 
+                            onClick={() => handleSetImportant(note,setNotes,token)} 
                             className="icon star-btn" 
                           /> 
                         : <FaRegStar 
-                            onClick={() => handleSetImportant(note,setNotes)} 
+                            onClick={() => handleSetImportant(note,setNotes,token)} 
                             className="icon star-btn" 
                           />
                     }

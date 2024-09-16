@@ -1,10 +1,15 @@
 .register,
-.login {
+.login,
+.user-profile,
+.logout {
   background-color: var(--background-color);
-  height: 100vh;
+  min-height: 100vh;
   width: 100%;
-  position: absolute;
+  position: fixed;
   top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
   z-index: 100;
   display: flex;
   align-items: center;
@@ -13,7 +18,8 @@
   gap:1rem;
 }
 .register-form,
-.login-form{
+.login-form,
+.profile-logout{
   min-width: 550px;
   background-color: var(--tertiary-color);
   color: var(--dark-color);
@@ -44,7 +50,8 @@
   gap: .5rem;
   align-items: center;
 }
-.submit-btn{
+.submit-btn,
+.user-btn{
   border: none;
   background-color: var(--dark-color);
   color: var(--color);
@@ -56,10 +63,12 @@
 }
 .profile-container{
   width: 100%;
-  min-height: 100%;
   background-color: var(--tertiary-color);
-  /* border-radius: 3rem; */
   padding: 2rem;
+  min-height: 100%;
+  max-height: inherit;
+  overflow: scroll;
+
 }
 .back-btn {
   border: none;

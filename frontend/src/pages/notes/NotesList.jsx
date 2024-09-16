@@ -9,20 +9,23 @@ import { Link } from "react-router-dom";
 
 const NotesList = ({filterNotes}) => {
   const [notes, setNotes] = useState([]);
+  const token = localStorage.getItem('authToken')
 
   useEffect(() => { 
     const fetchNotes = async () => {
-      try {
-        const token = localStorage.getItem('authToken');
-        const res = await axios.get('http://localhost:5001/api/notes/get-all',{
-          headers:{
-            Authorization: `Bearer ${token}`,
-          }
-        });
-        const data = res.data.data
-        filter(filterNotes,data,setNotes)
-      } catch (error) {
-        console.error('Error fetching notes:', error.message);
+      if(token){
+        try {
+          const token = localStorage.getItem('authToken');
+          const res = await axios.get('http://localhost:5001/api/notes/get-all',{
+            headers:{
+              Authorization: `Bearer ${token}`,
+            }
+          });
+          const data = res.data.data
+          filter(filterNotes,data,setNotes)
+        } catch (error) {
+          console.error('Error fetching notes:', error.message);
+        }
       }
     };
     fetchNotes();
