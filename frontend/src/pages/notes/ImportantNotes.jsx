@@ -12,7 +12,12 @@ const ImportantNotes = ({filterNotes}) => {
   useEffect(() => {
     const fetchImportantNotes = async () => {
       try {
-        const res = await axios.get('http://localhost:5001/api/notes/get-all');
+        const token = localStorage.getItem('authToken')
+        const res = await axios.get('http://localhost:5001/api/notes/get-all',{
+          headers:{
+            Authorization: `Bearer ${token}`,
+          }
+        });
         const importantNotes = res.data.data.filter(note => note.isImportant);
         filter(filterNotes,importantNotes,setNotes);
       } catch (error) {

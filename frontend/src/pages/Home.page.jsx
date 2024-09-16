@@ -6,12 +6,16 @@ import './styles/home.page.css'
 import Construction from '../components/Construction/Construction'
 import ThemeToggle from './ThemeToggle'
 import Hero from '../components/Hero/Hero'
+import UserProfile from './auth page/UserProfile'
+import Register from './auth page/Register'
+import Login from './auth page/Login'
 
 const Home = (props) => {
   
   const {isSlideMenuActive } = props
   const savedTheme = localStorage.getItem('theme');
   const theme = savedTheme || 'coffee';
+
 
 
   document.body.className = theme;
@@ -32,6 +36,9 @@ const Home = (props) => {
           <Route path='' element={<Hero />} />
           <Route path="/construction" element={<Construction />}/>
           <Route path="/theme" element={<ThemeToggle />}/>
+          <Route path="/profile/*" element={<UserProfile />} />
+          <Route path="/profile/register" element={<Register />} />
+          <Route path="/profile/login" element={<Login />} />
         </Routes>
       </div>
 

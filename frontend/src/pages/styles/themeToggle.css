@@ -1,6 +1,13 @@
 .themeToggle{
-  /* background-color: red; */
-  padding: 2rem;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  background-color: var(--primary-color);
+  padding: 3rem;
+  overflow: scroll;
 }
 .themeToggle-container{
   display: flex;
@@ -42,9 +49,16 @@
   border: none;
   padding: .5rem;
   border-radius: 50%;
-  margin: 1rem 0;
+  margin: 1rem .5rem;
   cursor: pointer;
 }
 .swtich{
   color: var(--color);
+}
+.theme-img{
+  margin: 2rem 0;
+}
+.theme-img img{
+  width: 80%;
+  border-radius: 1rem;
 }

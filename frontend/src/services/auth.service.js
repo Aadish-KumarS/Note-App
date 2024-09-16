@@ -1,5 +1,4 @@
 import axios from 'axios'; 
-import {useNavigate} from 'react-router-dom'
 
 
 export const handleSubmitRegister = async (e,formValidation,formData,setErrors,setSuccessMessage,setErrorMessage,setFormData) => {
@@ -42,7 +41,7 @@ export const handleSubmitLogin = async (e,formData,setSuccessMessage,setErrorMes
 
   try {
     // Make API request to login
-    const response = await axios.post('http://localhost:5001/api/auth/login', formData); // Replace with your login API endpoint
+    const response = await axios.post('http://localhost:5001/api/auth/login', formData); 
     const { token } = response.data;
 
     console.log(token)

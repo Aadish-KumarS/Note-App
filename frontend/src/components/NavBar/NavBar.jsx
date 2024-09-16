@@ -8,6 +8,7 @@ import { MdOutlineAccountCircle } from "react-icons/md";
 const NavBar = ({setIsSlideMenuActive,}) => {
 
   const location = useLocation();
+  const isLoggedIn = !!localStorage.getItem('authToken');
   const isActive = (path) => {
     if(location.pathname === path){
       return true
@@ -39,8 +40,8 @@ const NavBar = ({setIsSlideMenuActive,}) => {
             <Link  to={'/theme'}>
               <IoColorPalette className='icon theme-btn' />
             </Link>
-            <Link to={'/register'}>
-              <MdOutlineAccountCircle className="icon acc-btn"/>
+            <Link to="/profile" className="icon-btn">
+              <MdOutlineAccountCircle className="icon acc-btn" />
             </Link>
         </div>
       </nav>
