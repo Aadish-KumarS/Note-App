@@ -7,11 +7,23 @@ import { MdOutlineRestorePage } from "react-icons/md";
 import { RiFileInfoLine } from "react-icons/ri";
 import './noteCard.css'
 import { deleteNote, handleRestoreOne, handleSetImportant } from "../../utils/eventHandlers";
+import { useEffect } from "react";
+import gsap from 'gsap'
 
 const NoteCard = ({notes,setNotes,isDeleted = false}) => {
 
   const token = localStorage.getItem('authToken');
   
+  useEffect(() => {
+    gsap.to('.notescard', {
+      opacity: 1,
+      scale: 1,
+      ease: 'power1.inOut',
+      delay: 0.15,
+      duration: .5
+    })
+  },[notes])
+
 
   return (
     <>

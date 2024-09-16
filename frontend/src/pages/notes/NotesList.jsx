@@ -1,8 +1,9 @@
-import { useEffect, useState } from "react"
+import { Profiler, useEffect, useState } from "react"
 import axios from 'axios';
 import '../styles/notes.css'
 import NoteCard from "../../components/NoteCard/NoteCard";
 import { filter } from "../../utils/eventHandlers.js";
+import { Link } from "react-router-dom";
 
 
 
@@ -32,12 +33,25 @@ const NotesList = ({filterNotes}) => {
 
   return (
     <div className="noteList">
-      <div className="noteList_container">
-        <NoteCard 
-          notes={notes} 
-          setNotes={setNotes} 
-        />
-      </div>
+      {
+        token 
+          ? (
+            <div className="noteList_container">
+              <NoteCard 
+                notes={notes} 
+                setNotes={setNotes} 
+              />
+            </div>
+          )
+          : (
+            <div className="empty-list">
+              <h1>Please Login to start creating Notes</h1>
+              <Link to={'/profile'} className="getStarted-btn">
+                Get Started
+              </Link>
+            </div>
+          )
+      }
     </div>
   )
 }

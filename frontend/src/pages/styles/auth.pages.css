@@ -1,7 +1,7 @@
 .register,
 .login {
   background-color: var(--background-color);
-  height: 115vh;
+  height: 100vh;
   width: 100%;
   position: absolute;
   top: 0;
@@ -53,4 +53,31 @@
   border-radius: 2rem;
   margin-top: 1rem;
   cursor: pointer;
+}
+.profile-container{
+  width: 100%;
+  min-height: 100%;
+  background-color: var(--tertiary-color);
+  /* border-radius: 3rem; */
+  padding: 2rem;
+}
+.back-btn {
+  border: none;
+  padding: .75rem 1.5rem;
+  border-radius: .5rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+.title-container{
+  font-size: 3rem;
+  color: var(--primary-color);
+  margin: 2rem 0;
+}
+.login-container,
+.register-container,
+.logout-container{
+  border: 1px solid var(--dark-color);
+  border-radius: 2rem;
+  margin: 3rem;
+  padding: 3rem;
 }

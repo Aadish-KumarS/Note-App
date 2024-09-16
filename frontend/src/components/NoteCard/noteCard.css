@@ -7,6 +7,8 @@
   padding: 1rem;
   justify-content: space-between;
   margin-bottom: 1rem ;
+  opacity: 0;
+  transform: scale(0);
 }
 
 .notescard-sec1{

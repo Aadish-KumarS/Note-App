@@ -10,6 +10,8 @@ import { tagsColor } from "../../constants/constants";
 
 const SlideMenu = () => {
 
+ 
+
 
   return (
     <section className="menu">

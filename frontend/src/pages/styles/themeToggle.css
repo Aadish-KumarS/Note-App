@@ -48,3 +48,10 @@
 .swtich{
   color: var(--color);
 }
+.theme-img{
+  margin: 2rem 0;
+}
+.theme-img img{
+  width: 80%;
+  border-radius: 1rem;
+}

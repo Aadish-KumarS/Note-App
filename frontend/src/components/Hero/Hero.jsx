@@ -1,7 +1,29 @@
 import './hero.css'
+import { GiNotebook } from "react-icons/gi";
+import gsap from 'gsap'
+import { useEffect } from 'react';
+import {Link} from 'react-router-dom'
 
+gsap.registerPlugin(ScrollTrigger);
 
 const Hero = () => {
+
+  useEffect(() => {
+    gsap.to('.welcome-title',{
+      opacity: 1,
+      delay: .015,
+      y: 0,
+      ease: 'power1.inOut'
+    });
+
+    gsap.to('.intro',{
+      x: 0,
+      delay: .015,
+      ease: 'power1.inOut',
+      opacity: 1,
+    })
+  },[])
+
   return (
     <section className="welcome-content">
       <h1>Welcome to Your New Favorite Notes App! 🎉</h1>

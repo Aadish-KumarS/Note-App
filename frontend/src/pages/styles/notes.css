@@ -25,7 +25,23 @@
   width: 100%;
   border-bottom: 1px solid var(--dark-color);
 }
-
+.empty-list{
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  align-items: center;
+  margin:  5rem 2rem;
+}
+.empty-list h1{
+  font-size: 3rem;
+}
+.getStarted-btn{
+  padding: .75rem 1.5rem;
+  border-radius: 3rem;
+  cursor: pointer;
+  background-color: var(--background-color);
+  color: var(--color);
+}
 /* ---------------------------------------------------- */
 /* EDIT */
 /* ---------------------------------------------------- */
@@ -42,21 +58,23 @@
 }
 .editNote-addTag{
   display: flex;
+  gap: 1rem;
   width: 100%;
   justify-content: space-between;
   align-items: center;
-  margin: 1rem;
-  gap:4rem;
+  margin: 2rem 1rem;
+  padding: 1rem;
 }
 .editNote-addTag input{
   flex: 1;
-  height: 80px;
+  height: 60px;
   background-color: transparent;
   border: none;
   border-bottom: 1px solid var(--dark-color);
   outline: none;
   color: var(--color);
   font-size: 1.25rem;
+  padding: 1rem;
 }
 .tagColor-container{
   display: grid;
@@ -185,17 +203,19 @@
 }
 .editNote-section2,
 .newNote-section2 {
-  border:1px solid var(--color);
+  border:3px solid var(--dark-color);
   padding: 2rem;
+  border-radius: 1rem;
+  background-color: var(--tertiary-color);
 }
 .editNote-section2 textarea,
 .newNote-section2 textarea {
+  color: var(--dark-color);
   border: none;
   outline: none;
   min-width: 100%;
   background-color: transparent;
   font-size: 1rem;
-  color: var(--color);
   min-height: 40vh;
   resize: none;
   line-height: 1.5rem;
@@ -257,9 +277,8 @@
 /* Important notes */
 /* ---------------------------------------------------- */
 .important-notes{
-  display: flex;
-  flex-direction: column;
-  gap: .5rem
+  gap: 1rem;
+  columns: 2;
 }
 
 

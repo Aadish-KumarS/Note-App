@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 import {   useEffect, useState } from 'react';
 import './styles/themeToggle.css'
 import { BiSolidCoffeeBean } from "react-icons/bi";
@@ -6,13 +5,15 @@ import { FaYinYang } from "react-icons/fa6";
 import { MdLightMode } from "react-icons/md";
 import { themeMenu } from '../constants/constants';
 import { IoIosSwitch } from "react-icons/io";
+import { TbSunset2 } from "react-icons/tb";
+import { Link } from 'react-router-dom';
 
+
+gsap.registerPlugin(ScrollTrigger);
 
 const ThemeToggle = () => {
 
   const [theme, setTheme] = useState(localStorage.getItem('theme'));
-
-
   const iconMap = {
     coffee: BiSolidCoffeeBean,
     bw: FaYinYang,
@@ -21,6 +22,8 @@ const ThemeToggle = () => {
 
   useEffect(() => {
     document.body.className = theme; 
+
+    
   }, [theme]);
 
   const handleThemeChange = (name) =>{
