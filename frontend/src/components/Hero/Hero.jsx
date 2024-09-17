@@ -31,8 +31,10 @@ const Hero = () => {
       ease: 'power1.inOut',
       scrollTrigger:{
         trigger: '.section-3',
-        start: 'top 80%', 
+        start: 'top 90%', 
         toggleActions: 'play reverse play reverse',
+        markers: true
+
       }
     });
 

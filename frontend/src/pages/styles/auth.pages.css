@@ -90,3 +90,22 @@
   margin: 3rem;
   padding: 3rem;
 }
+.spinner{
+  animation: spin 2s linear infinite;
+  width: 30px !important;
+  height: 30px !important;
+}
+.success-message{
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}

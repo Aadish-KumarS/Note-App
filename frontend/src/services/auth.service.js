@@ -38,26 +38,36 @@ export const handleSubmitRegister = async (e,formValidation,formData,setErrors,s
 export const handleSubmitLogin = async (e,formData,setSuccessMessage,setErrorMessage,setFormData) => {
   e.preventDefault();
 
+  const { email, password } = formData;
+  if (!email || !password) {
+    setErrorMessage('Email and password are required.');
+    return;
+  }
 
   try {
-    // Make API request to login
     const response = await axios.post('http://localhost:5001/api/auth/login', formData); 
     const { token } = response.data;
 
-    console.log(token)
-    // Save token to localStorage or cookies
     localStorage.setItem('authToken', token);
 
     setSuccessMessage('Login successful!');
     setErrorMessage('');
-    // Reset form data
     setFormData({ email: '', password: '' });
 
-    // Redirect to a protected route if needed (e.g., dashboard)
-
   } catch (error) {
-    console.error(error);
-    setErrorMessage(error.response?.data?.message || 'Login failed. Please check your credentials.');
+    if (error.response) {
+      const { status, data } = error.response;
+      
+      if (status === 404 && data.message === 'User not found') {
+        setErrorMessage('User not found. Please sign up.');
+      } else if (status === 401 && data.message === 'Incorrect password') {
+        setErrorMessage('Incorrect password. Please try again.');
+      } else {
+        setErrorMessage('Login failed. Please check your credentials.');
+      }
+    } else {
+      setErrorMessage('An error occurred during login. Please try again later.');
+    }
     setSuccessMessage('');
   }
 };

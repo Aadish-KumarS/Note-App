@@ -3,6 +3,7 @@ import { MdMailOutline, MdPassword } from "react-icons/md";
 import { useState } from 'react';
 import {handleSubmitLogin} from '../../services/auth.service'
 import {Link, useNavigate } from 'react-router-dom';
+import { CgSpinner } from "react-icons/cg";
 
 const Login = () => {
   const [formData, setFormData] = useState({
@@ -21,14 +22,25 @@ const Login = () => {
       [name]: value,
     }));
   };
+
+  const handleForm = async (e) => {
+    try {
+      await handleSubmitLogin(e, formData, setSuccessMessage, setErrorMessage, setFormData);
+      if (localStorage.getItem('authToken')) {
+        setTimeout(() => {
+          navigate('/'); 
+        }, 1500); 
+      }
+    } catch (error) {
+      console.error('Error during login:', error);
+    }
+  }
+
   return (
     <div className="login">
       <form 
         className="login-form" 
-        onSubmit={(e) =>{
-          handleSubmitLogin(e,formData,setSuccessMessage,setErrorMessage,setFormData)
-          navigate('/');
-        } }
+        onSubmit={(e) => handleForm(e) }
       >
         <h1>Login</h1>
 
@@ -59,7 +71,11 @@ const Login = () => {
         </div>
 
         {errorMessage && <p className="error">{errorMessage}</p>}
-        {successMessage && <p className="success">{successMessage}</p>}
+        {successMessage && 
+          (<div className='success-message'>
+            <p className="success">{successMessage}</p>
+            <CgSpinner className='icon spinner' />
+          </div>)}
 
         <button className="submit-btn" type="submit">
           Login
