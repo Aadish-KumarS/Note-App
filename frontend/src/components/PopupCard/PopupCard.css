@@ -1,15 +1,13 @@
 .popup-overlay{
-  position: absolute;
+  position: fixed;
   top: 0;
   bottom: 0;
   right: 0;
   left: 0;
   background-color: rgba(197, 198, 198, 0.321);
   backdrop-filter: blur(20px);
-  height: 110vh;
   z-index: 100;
   display: flex;
-  /* margin-top: 4rem; */
 }
 .popup-card{
   background-color: var(--primary-color);

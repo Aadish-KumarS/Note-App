@@ -8,6 +8,7 @@ import { MdOutlineRestore } from 'react-icons/md';
 const PopupCard = (props) => {
 
   const { title, onConfirm, onCancel,setDeletedNotes,deletedNotes } = props
+  const token = localStorage.getItem('authToken')
 
   useEffect(() => {
     document.body.classList.add('no-scroll')
@@ -24,7 +25,7 @@ const PopupCard = (props) => {
         <div className="popup-actions">
           <button 
             className="confirm-btn" 
-            onClick={() => onConfirm(deletedNotes,setDeletedNotes)}>
+            onClick={() => onConfirm(deletedNotes,setDeletedNotes,token)}>
             Confirm
             <TiTick className='icon tick'/>
           </button>

@@ -9,6 +9,7 @@ import Hero from '../components/Hero/Hero'
 import UserProfile from './auth page/UserProfile'
 import Register from './auth page/Register'
 import Login from './auth page/Login'
+import Confirmation from './auth page/Confirmation'
 
 const Home = (props) => {
   
@@ -37,6 +38,7 @@ const Home = (props) => {
           <Route path="/profile/*" element={<UserProfile />} />
           <Route path="/profile/register" element={<Register />} />
           <Route path="/profile/login" element={<Login />} />
+          <Route path="/profile/confirmation" element={<Confirmation />} />
         </Routes>
       </div>
 

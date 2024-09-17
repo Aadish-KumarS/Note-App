@@ -63,7 +63,6 @@ export const registerUser = async (req, res) => {
     const user = new User({ name, email, password: hashedPassword, verificationToken });
     await user.save();
 
-    console.log(email)
 
     // Create verification link
     const verificationLink = `http://localhost:5001/api/auth/verify-email?token=${verificationToken}`;

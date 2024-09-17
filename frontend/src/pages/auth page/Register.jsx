@@ -44,7 +44,7 @@ const Register = () => {
       );
       if(!errorMessage, Object.keys(errors).length === 0){
         setTimeout(() => {
-          navigate('/'); 
+          navigate('/profile/confirmation', { state: { fromRegistration: true } }); 
         }, 1500); 
       }
     } catch (error) {

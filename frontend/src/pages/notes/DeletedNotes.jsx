@@ -5,7 +5,7 @@ import { MdOutlineDeleteForever, MdOutlineRestorePage } from 'react-icons/md';
 import PopupCard from '../../components/PopupCard/PopupCard';
 import { IoAlertCircleOutline } from 'react-icons/io5';
 import { filter, handleCancel, handleConfirm } from '../../utils/eventHandlers.js';
-
+import { LiaNotesMedicalSolid } from "react-icons/lia";
 
 const DeletedNotes = (props) => {
 
@@ -67,10 +67,17 @@ const DeletedNotes = (props) => {
             <IoAlertCircleOutline className='icon'/>
           </div>
         ) : (
-          <div>
+          <div >
             <PopupCard 
               title={popupAction}
-              onConfirm={() => handleConfirm(deletedNotes, setDeletedNotes,popupAction,setShowAlertPopup,setPopupAction)}
+              onConfirm={() => handleConfirm(
+                deletedNotes, 
+                setDeletedNotes,
+                popupAction,
+                setShowAlertPopup,
+                setPopupAction,
+                token
+              )}
               onCancel={() => handleCancel(setShowAlertPopup)}
               deletedNotes={deletedNotes}
               setDeletedNotes={setDeletedNotes}
@@ -78,10 +85,12 @@ const DeletedNotes = (props) => {
           </div>
         )
       )}
-      <div>
+      <div className='deletedNotes-card-container'>
         {
           deletedNotes.length === 0  
-            ? <div className='empty-deletedNotes'> No deleted notes. </div>
+            ? <div className='empty-deletedNotes'> 
+                <h1>No deleted notes. </h1>
+              </div>
             : <NoteCard notes={deletedNotes} setNotes={setDeletedNotes} isDeleted={true} />
         }
       </div>

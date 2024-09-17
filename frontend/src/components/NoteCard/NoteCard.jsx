@@ -80,7 +80,7 @@ const NoteCard = ({notes,setNotes,isDeleted = false}) => {
                   isDeleted 
                     ? <MdOutlineRestorePage  
                         className="icon restore-btn" 
-                        onClick={() =>{ handleRestoreOne(note._id,setNotes)}}
+                        onClick={() =>{ handleRestoreOne(note._id,setNotes,token)}}
                       />
                     : <IoTrashSharp 
                         onClick={()=> deleteNote(note._id,setNotes,token)} 

@@ -126,16 +126,23 @@ export const handleSetImportant = async (note, setNotes,token) => {
 };
 
 
-export  const handleConfirm = async (deletedNotes, setDeletedNotes,popupAction,setShowAlertPopup,setPopupAction) => {
+export  const handleConfirm = async (deletedNotes, setDeletedNotes,popupAction,setShowAlertPopup,setPopupAction,token) => {
   try {
     if (popupAction === 'delete') {
-      await axios.delete('http://localhost:5001/api/deleted-notes/delete-all');
+      await axios.delete('http://localhost:5001/api/deleted-notes/delete-all',{
+        headers:{
+          Authorization: `Bearer ${token}`,
+        }
+      });
       setDeletedNotes([]);
     } else if (popupAction === 'restore') {
       try {
         await Promise.all(
           deletedNotes.map((note) =>
-            axios.post('http://localhost:5001/api/notes/create', note)
+            axios.post('http://localhost:5001/api/notes/create', note,{ 
+              headers:{
+              Authorization: `Bearer ${token}`,
+            }})
           )
         );
         await axios.delete('http://localhost:5001/api/deleted-notes/delete-all');
@@ -168,13 +175,21 @@ export  const handleGoBack = (navigate) => {
   navigate(-1); 
 };
 
-export const handleRestoreOne = async (id, setNotes) => {
+export const handleRestoreOne = async (id, setNotes,token) => {
   try {
     const deletedNoteResponse = await axios.get(`http://localhost:5001/api/deleted-notes/get-one/${id}`);
     const note = deletedNoteResponse.data.data;
 
-    await axios.delete(`http://localhost:5001/api/deleted-notes/delete-one/${id}`);
-    await axios.post('http://localhost:5001/api/notes/create', note);
+    await axios.delete(`http://localhost:5001/api/deleted-notes/delete-one/${id}`,{
+      headers:{
+        Authorization: `Bearer ${token}`,
+      }
+    });
+    await axios.post('http://localhost:5001/api/notes/create', note,{
+      headers:{
+        Authorization: `Bearer ${token}`,
+      }
+    });
 
     setNotes(prev => prev.filter(note => note._id !== id));
   } catch (error) {
