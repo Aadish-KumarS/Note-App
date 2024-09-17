@@ -66,7 +66,7 @@ const UserProfile = () => {
                   className='user-btn'
                   onClick={() => {
                     handleLogout();
-                    navigate('/profile');
+                    navigate('/');
                   }}>
                     Logout
                 </button>

@@ -5,6 +5,7 @@ import { MdMailOutline, MdPassword } from "react-icons/md";
 import { formValidation } from '../../utils/formValidation';
 import { handleSubmitRegister } from '../../services/auth.service';
 import {Link, useNavigate} from 'react-router-dom'
+import { CgSpinner } from 'react-icons/cg';
 
 
 const Register = () => {
@@ -31,17 +32,32 @@ const Register = () => {
   };
 
 
-
+  const handleForm =  async(e) => {
+    try {
+      await handleSubmitRegister(e, 
+        formValidation, 
+        formData,
+        setErrors, 
+        setSuccessMessage, 
+        setErrorMessage, 
+        setFormData
+      );
+      if(!errorMessage, Object.keys(errors).length === 0){
+        setTimeout(() => {
+          navigate('/'); 
+        }, 1500); 
+      }
+    } catch (error) {
+      console.error('Error during registration:', error);
+    }
+  }
 
 
   return (
     <div className="register">
       <form 
         className='register-form' 
-        onSubmit={(e) =>{
-          handleSubmitRegister(e,formValidation,formData,setErrors,setSuccessMessage,setErrorMessage,setFormData)
-          navigate('/')
-        }}
+        onSubmit={(e) => handleForm(e)}
       >
         <h1>User Register</h1>
         <div className="form-group">
@@ -95,11 +111,15 @@ const Register = () => {
           />
           {errors.confirmPassword && <p className="error">{errors.confirmPassword}</p>}
         </div>
-
         <button className='submit-btn' type="submit">Register</button>
-
-        {successMessage && <p className="success">{successMessage}</p>}
+        {successMessage &&  
+          (<div className='success-message'>
+            <p className="success">{successMessage}</p>
+            <CgSpinner className='icon spinner' />
+          </div>)}
         {errorMessage && <p className="error">{errorMessage}</p>}
+
+
       </form>
       <Link to={'/profile/login'}>
         Alerady a user? <span>Login</span>

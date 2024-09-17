@@ -68,7 +68,13 @@
   min-height: 100%;
   max-height: inherit;
   overflow: scroll;
-
+}
+.success{
+  font-weight: 600;
+}
+.error{
+  color: var(--neon-red);
+  font-weight: 600;
 }
 .back-btn {
   border: none;

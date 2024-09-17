@@ -8,6 +8,7 @@ export const handleSubmitRegister = async (e,formValidation,formData,setErrors,s
   // Check for validation errors
   if (Object.keys(validationErrors).length > 0) {
     setErrors(validationErrors);
+    console.log('yes')
     setSuccessMessage('');
     setErrorMessage('Registration failed. Please correct the errors.');
     return;
@@ -22,16 +23,26 @@ export const handleSubmitRegister = async (e,formValidation,formData,setErrors,s
     });
 
     // Success response
+    console.log('yes 555')
     setSuccessMessage('Registration successful!');
     setErrorMessage('');
     setErrors({});
     setFormData({ name: '', email: '', password: '', confirmPassword: '' });
   } catch (error) {
-    // Handle API errors
-    setErrorMessage(error.response?.data?.message || 'Registration failed. Please try again.');
+    const { status, data } = error.response;
+    console.log('no')
+    if (status === 400 && data.message === 'Email already in use') {
+      setErrorMessage('This email is already registered. Please use a different email.');
+    } else if (status === 400 && data.message === 'Passwords do not match') {
+      setErrorMessage('Passwords do not match. Please check and try again.');
+    } else if (status === 400 && data.message === 'Validation error') {
+      setErrorMessage('Validation error. Please check the entered data.');
+    } else {
+      setErrorMessage(data.message || 'Registration failed. Please try again.');
+    }
     setSuccessMessage('');
-    console.error('API Error:', error); // Optional: Log the error for debugging
-  }
+  } 
+    
 };
 
 
