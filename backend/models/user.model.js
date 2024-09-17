@@ -24,6 +24,11 @@ const userSchema = new mongoose.Schema({
       ref: 'DeletedNote' 
     }
   ],
+  isVerified:{
+    type: Boolean,
+    default: false
+  },
+  verificationToken: { type: String } 
 })
 
 export const User = mongoose.model('User', userSchema)

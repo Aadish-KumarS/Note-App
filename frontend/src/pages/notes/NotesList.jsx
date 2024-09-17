@@ -1,4 +1,4 @@
-import { Profiler, useEffect, useState } from "react"
+import { useEffect, useState } from "react"
 import axios from 'axios';
 import '../styles/notes.css'
 import NoteCard from "../../components/NoteCard/NoteCard";
@@ -48,7 +48,7 @@ const NotesList = ({filterNotes}) => {
           )
           : (
             <div className="empty-list">
-              <h1>Please Login to start creating Notes</h1>
+              <h1>Access your account to begin note creation.</h1>
               <Link to={'/profile'} className="getStarted-btn">
                 Get Started
               </Link>

@@ -29,7 +29,7 @@ const Login = () => {
       if (localStorage.getItem('authToken')) {
         setTimeout(() => {
           navigate('/'); 
-        }, 1500); 
+        }, 500); 
       }
     } catch (error) {
       console.error('Error during login:', error);

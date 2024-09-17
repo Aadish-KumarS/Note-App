@@ -50,6 +50,7 @@ export const handleSubmitLogin = async (e,formData,setSuccessMessage,setErrorMes
   e.preventDefault();
 
   const { email, password } = formData;
+
   if (!email || !password) {
     setErrorMessage('Email and password are required.');
     return;
@@ -58,6 +59,13 @@ export const handleSubmitLogin = async (e,formData,setSuccessMessage,setErrorMes
   try {
     const response = await axios.post('http://localhost:5001/api/auth/login', formData); 
     const { token } = response.data;
+
+    console.log(response.data)
+    if(!response.data.user.isVerified){
+      console.log(response.data.user.isVerified)
+      setErrorMessage('Mail is not verfied.');
+      return
+    }
 
     localStorage.setItem('authToken', token);
 
