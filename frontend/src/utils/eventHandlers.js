@@ -27,7 +27,7 @@ export const filterAndSortNotes = (filterNotes, data, setNotes, selectedTagColor
 
 export const deleteNote = async (id,setNotes,token) => {
   try {
-    const delteNote =  await axios.get(`http://localhost:5001/api/notes/get-one/${id}`,{
+    const delteNote =  await axios.get(`https://mern-note-app-0vk7.onrender.com/api/notes/get-one/${id}`,{
       headers:{
         Authorization: `Bearer ${token}`,
       }
@@ -41,12 +41,12 @@ export const deleteNote = async (id,setNotes,token) => {
       tags: [...note.tags],
       user: note.user,   
     } ;
-    await axios.post('http://localhost:5001/api/deleted-notes/post',data,{
+    await axios.post('https://mern-note-app-0vk7.onrender.com/api/deleted-notes/post',data,{
       headers:{
         Authorization: `Bearer ${token}`,
       }
     })
-    await axios.delete(`http://localhost:5001/api/notes/delete/${id}`,{
+    await axios.delete(`https://mern-note-app-0vk7.onrender.com/api/notes/delete/${id}`,{
       headers:{
         Authorization: `Bearer ${token}`,
       }
@@ -108,7 +108,7 @@ export const handleTagClick = (id,activeTag,setActiveTag) => {
 export const handleSetImportant = async (note, setNotes,token) => {
   try {
     const updatedNote = { ...note, isImportant: !note.isImportant };
-    await axios.put(`http://localhost:5001/api/notes/edit/${note._id}`, {
+    await axios.put(`https://mern-note-app-0vk7.onrender.com/api/notes/edit/${note._id}`, {
       ...note,
       isImportant: updatedNote.isImportant,
     },{
@@ -138,7 +138,7 @@ export const handleSetImportant = async (note, setNotes,token) => {
 export  const handleConfirm = async (deletedNotes, setDeletedNotes,popupAction,setShowAlertPopup,setPopupAction,token) => {
   try {
     if (popupAction === 'delete') {
-      await axios.delete('http://localhost:5001/api/deleted-notes/delete-all',{
+      await axios.delete('https://mern-note-app-0vk7.onrender.com/api/deleted-notes/delete-all',{
         headers:{
           Authorization: `Bearer ${token}`,
         }
@@ -148,13 +148,13 @@ export  const handleConfirm = async (deletedNotes, setDeletedNotes,popupAction,s
       try {
         await Promise.all(
           deletedNotes.map((note) =>
-            axios.post('http://localhost:5001/api/notes/create', note,{ 
+            axios.post('https://mern-note-app-0vk7.onrender.com/api/notes/create', note,{ 
               headers:{
               Authorization: `Bearer ${token}`,
             }})
           )
         );
-        await axios.delete('http://localhost:5001/api/deleted-notes/delete-all');
+        await axios.delete('https://mern-note-app-0vk7.onrender.com/api/deleted-notes/delete-all');
         setDeletedNotes([]);
       } catch (error) {
         console.error('Error restoring all deleted notes:', error.message);
@@ -186,15 +186,15 @@ export  const handleGoBack = (navigate) => {
 
 export const handleRestoreOne = async (id, setNotes,token) => {
   try {
-    const deletedNoteResponse = await axios.get(`http://localhost:5001/api/deleted-notes/get-one/${id}`);
+    const deletedNoteResponse = await axios.get(`https://mern-note-app-0vk7.onrender.com/api/deleted-notes/get-one/${id}`);
     const note = deletedNoteResponse.data.data;
 
-    await axios.delete(`http://localhost:5001/api/deleted-notes/delete-one/${id}`,{
+    await axios.delete(`https://mern-note-app-0vk7.onrender.com/api/deleted-notes/delete-one/${id}`,{
       headers:{
         Authorization: `Bearer ${token}`,
       }
     });
-    await axios.post('http://localhost:5001/api/notes/create', note,{
+    await axios.post('https://mern-note-app-0vk7.onrender.com/api/notes/create', note,{
       headers:{
         Authorization: `Bearer ${token}`,
       }

@@ -20,7 +20,7 @@ const UserProfile = () => {
   const handleLogout = async () => {
     try {
       localStorage.removeItem('authToken');
-      await axios.post('http://localhost:5001/api/auth/logout');
+      await axios.post('https://mern-note-app-0vk7.onrender.com/api/auth/logout');
   
     } catch (error) {
       console.error('Logout failed:', error);

@@ -35,8 +35,6 @@ const Hero = () => {
         trigger: '.section-3',
         start: 'top 90%', 
         toggleActions: 'play reverse play reverse',
-        markers: true
-
       }
     });
 

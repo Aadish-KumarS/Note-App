@@ -28,7 +28,7 @@ const EditNote = () => {
 
 
   useEffect(() => {
-    axios.get(`http://localhost:5001/api/notes/get-one/${id}`,
+    axios.get(`https://mern-note-app-0vk7.onrender.com/api/notes/get-one/${id}`,
       {
         headers: {
           Authorization: `Bearer ${token}`,
@@ -45,7 +45,7 @@ const EditNote = () => {
   
   
   const handleSave = () => {
-    axios.put(`http://localhost:5001/api/notes/edit/${id}`,editNote,
+    axios.put(`https://mern-note-app-0vk7.onrender.com/api/notes/edit/${id}`,editNote,
       {
         headers: {
           Authorization: `Bearer ${token}`,

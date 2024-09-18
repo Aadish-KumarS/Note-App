@@ -18,7 +18,7 @@ const NotesList = ({filterNotes,selectedTagColor}) => {
       if(token){
         try {
           const token = localStorage.getItem('authToken');
-          const res = await axios.get('http://localhost:5001/api/notes/get-all',{
+          const res = await axios.get('https://mern-note-app-0vk7.onrender.com/api/notes/get-all',{
             headers:{
               Authorization: `Bearer ${token}`,
             }

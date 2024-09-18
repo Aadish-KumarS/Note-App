@@ -16,7 +16,7 @@ export const handleSubmitRegister = async (e,formValidation,formData,setErrors,s
 
   try {
     // API request to register user (adjust URL and request body as per your backend)
-    await axios.post( 'http://localhost:5001/api/auth/register', {
+    await axios.post( 'https://mern-note-app-0vk7.onrender.com/api/auth/register', {
       name: formData.name,
       email: formData.email,
       password: formData.password,
@@ -57,7 +57,7 @@ export const handleSubmitLogin = async (e,formData,setSuccessMessage,setErrorMes
   }
 
   try {
-    const response = await axios.post('http://localhost:5001/api/auth/login', formData); 
+    const response = await axios.post('https://mern-note-app-0vk7.onrender.com/api/auth/login', formData); 
     const { token } = response.data;
 
     console.log(response.data)

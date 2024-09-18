@@ -23,7 +23,7 @@ const DeletedNotes = (props) => {
   useEffect(() => {
     const fetchDeletedNotes = async () => {
       try {
-        const deletedNotes = await axios.get('http://localhost:5001/api/deleted-notes/all',{
+        const deletedNotes = await axios.get('https://mern-note-app-0vk7.onrender.com/api/deleted-notes/all',{
           headers:{
             Authorization: `Bearer ${token}`,
           }

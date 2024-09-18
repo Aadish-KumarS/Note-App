@@ -13,7 +13,7 @@ const PreviewNote = () => {
     const fetchNote = async () => {
       try {
         const token = localStorage.getItem('authToken');
-        const response = await axios.get(`http://localhost:5001/api/notes/get-one/${id}`, {
+        const response = await axios.get(`https://mern-note-app-0vk7.onrender.com/api/notes/get-one/${id}`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },

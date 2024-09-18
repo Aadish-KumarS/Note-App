@@ -23,7 +23,7 @@ const CreateNote = () => {
     try {
       const token = localStorage.getItem('authToken');
       await axios.post(
-        'http://localhost:5001/api/notes/create',
+        'https://mern-note-app-0vk7.onrender.com/api/notes/create',
         newNote,
         {
           headers: {
