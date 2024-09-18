@@ -51,15 +51,17 @@ const ThemeToggle = () => {
               </div>
             </div>
             <div className='theme-info'>
-              <div>
-                <button className='switch-btn' onClick={() => handleThemeChange(theme.icons)}>
-                    <IoIosSwitch className='icon swtich'/> 
-                </button>
-                <strong>Click here to switch</strong>
-              </div>
-              <div>
-                {theme.info}
-              </div>
+              <>
+                <div>
+                  <button className='switch-btn' onClick={() => handleThemeChange(theme.icons)}>
+                      <IoIosSwitch className='icon swtich'/> 
+                  </button>
+                  <strong>Click here to switch</strong>
+                </div>
+                <div className='theme-info-text'>
+                  {theme.info}
+                </div>
+              </>
               <div className='theme-img'>
                 <img src={theme.img} />
               </div>

@@ -12,9 +12,8 @@ const Construction = () => {
 
   return (
     <div style={{
-      position: "absolute",
-      top: -100,
-      bottom: 0,
+      position: "fixed",
+      top:0,
       background: "black",
       left: 0,
       right: 0,
@@ -23,7 +22,7 @@ const Construction = () => {
       justifyContent: "center",
       alignItems: "center",
       fontSize: "3rem",
-      height: '120vh',
+      height: '100vh',
       flexDirection: 'column'
     }}>
       <h1> 

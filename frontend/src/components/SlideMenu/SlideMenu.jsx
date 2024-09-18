@@ -8,9 +8,7 @@ import { FaRegNoteSticky } from "react-icons/fa6";
 import { PiTagBold } from "react-icons/pi";
 import { tagsColor } from "../../constants/constants";
 
-const SlideMenu = () => {
-
- 
+const SlideMenu = ({ setSelectedTagColor,selectedTagColor }) => {
 
 
   return (
@@ -64,7 +62,19 @@ const SlideMenu = () => {
           <div className="notes-list">
             {tagsColor.map((color,i) => {
               return(
-                <div className="notes-list-item" style={{background: color.color}} key={i}> 
+                <div 
+                  className="notes-list-item" 
+                  style={{background: color.color}} 
+                  key={i}
+                  onClick={() => {
+                    if (selectedTagColor === color.color) {
+                      setSelectedTagColor('');
+                    } else {
+                      setSelectedTagColor(color.color);
+                    }
+                  }
+                  }
+                  > 
                   {color.name}
                 </div>
               )

@@ -1,20 +1,20 @@
 import axios from 'axios'
 import { useState } from 'react'
-import TextareaAutosize from 'react-textarea-autosize';
 import '../styles/notes.css'
 import { MdOutlineSaveAs } from 'react-icons/md';
 import { useNavigate } from 'react-router-dom';
 import TagColorPicker from '../../components/TagColorPicker/TagColorPicker';
 import { IoClose } from 'react-icons/io5';
 import { handleAddTag, handleDeleteTag, handleSelectColor, handleTagClick } from '../../utils/eventHandlers';
-
+import 'react-quill/dist/quill.snow.css';
+import ReactQuill from 'react-quill';
 
 const CreateNote = () => {
 
   const navigate  = useNavigate();
   const [newNote, setNewNote] = useState({
     title: "Untitled",
-    content: "What's on your mind?",
+    content: "",
     tags: []
   });
   const [activeTag, setActiveTag] = useState('')
@@ -58,12 +58,27 @@ const CreateNote = () => {
           />
         </div>
         <div  className="newNote-section2">
-        <TextareaAutosize 
-          value={newNote.content}
-          onChange={e => {
-            setNewNote(prev => ({...prev, content: e.target.value }))
-          }}
-        />
+          <ReactQuill
+            theme="snow"
+            value={newNote.content}
+            onChange={value => setNewNote(prev => ({ ...prev, content: value }))}
+            placeholder="What's on your mind?"
+            modules={{
+              toolbar: [
+                ['bold', 'italic', 'underline', 'strike'],        // toggled buttons
+                ['blockquote', 'code-block'],
+                [{ 'header': 1 }, { 'header': 2 }],               // custom button values
+                [{ 'list': 'ordered'}, { 'list': 'bullet' }],
+                [{ 'script': 'sub'}, { 'script': 'super' }],      // superscript/subscript
+                [{ 'indent': '-1'}, { 'indent': '+1' }],          // outdent/indent
+                [{ 'direction': 'rtl' }],                         // text direction
+                [{ 'size': ['small', false, 'large', 'huge'] }],  // custom dropdown
+                [{ 'color': [] }, { 'background': [] }],          // dropdown with defaults from theme
+                [{ 'align': [] }],
+                ['clean']                                         // remove formatting button
+              ]
+            }}
+          />
         </div>
         <div className="newNote-section3">
           <TagColorPicker 
@@ -79,7 +94,9 @@ const CreateNote = () => {
                   <button 
                     id={i} 
                     className="tag" 
-                    onClick={() => handleTagClick(i, activeTag,setActiveTag)}
+                    onClick={() =>{
+                      handleTagClick(i, activeTag,setActiveTag)
+                    }}
                     style={{backgroundColor:tag.color}}
                   > 
                     {tag.name}

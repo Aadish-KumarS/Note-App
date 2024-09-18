@@ -2,12 +2,12 @@ import axios from "axios"
 import { useEffect, useState } from "react"
 import { useNavigate, useParams } from "react-router-dom"
 import { MdOutlineCancel, MdOutlineSaveAs } from "react-icons/md";
-import TextareaAutosize from 'react-textarea-autosize';
 import { IoClose} from "react-icons/io5";
 import TagColorPicker from "../../components/TagColorPicker/TagColorPicker";
 import { FaRegStar, FaStar } from "react-icons/fa";
 import { handleAddTag, handleDeleteTag, handleGoBack, handleSelectColor, handleSetImportant, handleTagClick } from "../../utils/eventHandlers";
-
+import ReactQuill from "react-quill";
+import 'react-quill/dist/quill.snow.css';
 
 const EditNote = () => {
 
@@ -97,10 +97,25 @@ const EditNote = () => {
           />
         </div>
         <div  className="editNote-section2">
-          <TextareaAutosize 
+          <ReactQuill
+            theme="snow"
             value={editNote.content}
-            onChange={e => {
-              setEditNote(prev => ({...prev, content: e.target.value }))
+            onChange={value => setEditNote(prev => ({ ...prev, content: value }))}
+            placeholder="What's on your mind?"
+            modules={{
+              toolbar: [
+                ['bold', 'italic', 'underline', 'strike'],        // toggled buttons
+                ['blockquote', 'code-block'],
+                [{ 'header': 1 }, { 'header': 2 }],               // custom button values
+                [{ 'list': 'ordered'}, { 'list': 'bullet' }],
+                [{ 'script': 'sub'}, { 'script': 'super' }],      // superscript/subscript
+                [{ 'indent': '-1'}, { 'indent': '+1' }],          // outdent/indent
+                [{ 'direction': 'rtl' }],                         // text direction
+                [{ 'size': ['small', false, 'large', 'huge'] }],  // custom dropdown
+                [{ 'color': [] }, { 'background': [] }],          // dropdown with defaults from theme
+                [{ 'align': [] }],
+                ['clean']                                         // remove formatting button
+              ]
             }}
           />
         </div>
@@ -119,15 +134,17 @@ const EditNote = () => {
               return(
                 <div key={i} >
                   <button 
-                    id={tag._id} 
+                    id={i} 
                     className="tag" 
-                    onClick={() => handleTagClick(tag._id,activeTag,setActiveTag)}
+                    onClick={() => {
+                      handleTagClick(i,activeTag,setActiveTag)
+                    }}
                     style={{backgroundColor:tag.color}}
                   > 
                     {tag.name}
                     <IoClose  
                       className="icon close-btn"
-                      onClick={() => handleDeleteTag(tag._id,setEditNote)}
+                      onClick={() => handleDeleteTag(i,setEditNote)}
                     />
                   </button>
                 </div>

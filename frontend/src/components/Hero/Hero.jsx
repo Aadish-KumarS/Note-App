@@ -9,6 +9,8 @@ gsap.registerPlugin(ScrollTrigger);
 
 const Hero = () => {
 
+  const token = localStorage.getItem('authToken')
+
   useEffect(() => {
     gsap.to('.welcome-title',{
       opacity: 1,
@@ -98,7 +100,7 @@ const Hero = () => {
           <strong>Ready to Get Started?</strong> Click below to explore the world of seamless
           note-taking. We can’t wait to see what you’ll create!
         </p>
-        <Link to={'/profile/register'} className='startUsing-btn'>
+        <Link to={token ?'/notes' : '/profile/register'} className='startUsing-btn'>
           Start using
         </Link>
       </div>

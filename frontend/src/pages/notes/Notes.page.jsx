@@ -3,14 +3,14 @@ import CreateNote from "./CreateNote"
 import NotesList from "./NotesList"
 import '../styles/notes.css'
 import EditNote from "./EditNote"
-import NoteDetail from './NoteDetail'
 import ImportantNotes from "./ImportantNotes"
 import DeletedNotes from "./DeletedNotes"
 import { useState } from "react"
 import { FiSearch } from "react-icons/fi";
+import PreviewNote from "./PreviewNote"
 
 
-const Notes = () => {
+const Notes = ({selectedTagColor}) => {
 
   const [showAlertPopup, setShowAlertPopup] = useState(false);
   const [popupAction, setPopupAction] = useState('');
@@ -42,13 +42,13 @@ const Notes = () => {
         <Route path="/" element={
           <NotesList
             filterNotes={filterNotes} 
+            selectedTagColor={selectedTagColor}
           />
         }/>
         <Route path="create" element={<CreateNote /> }/>
         <Route path="edit/:id" element={<EditNote />}/>
-        <Route path=":id" element={<NoteDetail/>}/>
         <Route path="important-notes" element={
-          <ImportantNotes filterNotes={filterNotes}/>
+          <ImportantNotes selectedTagColor={selectedTagColor} filterNotes={filterNotes}/>
         }/>
         <Route path="deleted-notes" element={
           <DeletedNotes
@@ -57,8 +57,10 @@ const Notes = () => {
             setPopupAction={setPopupAction}
             setShowAlertPopup={setShowAlertPopup}
             filterNotes={filterNotes}
+            selectedTagColor= {selectedTagColor}
           />
         }/>
+        <Route path="previwe/:id" element={<PreviewNote/>}/>
       </Routes>
     </div>
   )

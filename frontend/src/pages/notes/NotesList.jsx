@@ -2,17 +2,19 @@ import { useEffect, useState } from "react"
 import axios from 'axios';
 import '../styles/notes.css'
 import NoteCard from "../../components/NoteCard/NoteCard";
-import { filter } from "../../utils/eventHandlers.js";
+import { filterAndSortNotes } from "../../utils/eventHandlers.js";
 import { Link } from "react-router-dom";
 
 
 
-const NotesList = ({filterNotes}) => {
+const NotesList = ({filterNotes,selectedTagColor}) => {
   const [notes, setNotes] = useState([]);
   const token = localStorage.getItem('authToken')
 
+  
   useEffect(() => { 
     const fetchNotes = async () => {
+      
       if(token){
         try {
           const token = localStorage.getItem('authToken');
@@ -22,16 +24,16 @@ const NotesList = ({filterNotes}) => {
             }
           });
           const data = res.data.data
-          filter(filterNotes,data,setNotes)
+          filterAndSortNotes(filterNotes, data, setNotes, selectedTagColor);
+
         } catch (error) {
           console.error('Error fetching notes:', error.message);
         }
       }
     };
     fetchNotes();
-  }, [filterNotes]);
+  }, [filterNotes,selectedTagColor]);
   
-
 
 
   return (
@@ -39,12 +41,20 @@ const NotesList = ({filterNotes}) => {
       {
         token 
           ? (
-            <div className="noteList_container">
-              <NoteCard 
-                notes={notes} 
-                setNotes={setNotes} 
-              />
-            </div>
+            <>
+              {
+                selectedTagColor 
+                  && <h1 style={{backgroundColor: selectedTagColor}} className="colorName-filter" >
+                        {selectedTagColor}
+                      </h1>
+              }
+              <div className="noteList_container">
+                <NoteCard 
+                  notes={notes} 
+                  setNotes={setNotes} 
+                />
+              </div>
+            </>
           )
           : (
             <div className="empty-list">

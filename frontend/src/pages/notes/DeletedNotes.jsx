@@ -4,8 +4,7 @@ import NoteCard from '../../components/NoteCard/NoteCard';
 import { MdOutlineDeleteForever, MdOutlineRestorePage } from 'react-icons/md';
 import PopupCard from '../../components/PopupCard/PopupCard';
 import { IoAlertCircleOutline } from 'react-icons/io5';
-import { filter, handleCancel, handleConfirm } from '../../utils/eventHandlers.js';
-import { LiaNotesMedicalSolid } from "react-icons/lia";
+import { filterAndSortNotes, handleCancel, handleConfirm } from '../../utils/eventHandlers.js';
 
 const DeletedNotes = (props) => {
 
@@ -14,7 +13,8 @@ const DeletedNotes = (props) => {
     popupAction,
     setShowAlertPopup,
     setPopupAction,
-    filterNotes
+    filterNotes,
+    selectedTagColor
   } = props
   const [deletedNotes, setDeletedNotes] = useState([]);
   const token = localStorage.getItem('authToken');
@@ -29,13 +29,13 @@ const DeletedNotes = (props) => {
           }
         });
         const data = deletedNotes.data.data
-        filter(filterNotes,data,setDeletedNotes);
+        filterAndSortNotes(filterNotes,data,setDeletedNotes,selectedTagColor);
       } catch (error) {
         console.log('Error fetching deleted notes:', error.message);
       }
     }
     fetchDeletedNotes()
-  },[filterNotes]);
+  },[filterNotes,selectedTagColor]);
 
   const handleDeleteAllNote = () => {
     setShowAlertPopup(true);
@@ -88,10 +88,19 @@ const DeletedNotes = (props) => {
       <div className='deletedNotes-card-container'>
         {
           deletedNotes.length === 0  
-            ? <div className='empty-deletedNotes'> 
+            ? <div className='no-notes'> 
                 <h1>No deleted notes. </h1>
               </div>
-            : <NoteCard notes={deletedNotes} setNotes={setDeletedNotes} isDeleted={true} />
+            : 
+              <>
+                {
+                  selectedTagColor 
+                    && <h1 style={{backgroundColor: selectedTagColor}} className="colorName-filter" >
+                          {selectedTagColor}
+                        </h1>
+                }
+                <NoteCard notes={deletedNotes} setNotes={setDeletedNotes} isDeleted={true} />
+              </>
         }
       </div>
 

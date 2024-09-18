@@ -2,18 +2,27 @@ import axios from "axios";
 
 
 
-export const filter = (filterNotes,data,setNotes) => {
-  if(filterNotes){
-    const filteredNotes = filterNotes
-      ? data.filter(note => 
-        note.title.toLowerCase().includes(filterNotes.toLowerCase()) 
-        || note.content.toLowerCase().includes(filterNotes.toLowerCase()))
-      : data;
-    setNotes(filteredNotes);
-  }else {
-    setNotes(data);
+
+export const filterAndSortNotes = (filterNotes, data, setNotes, selectedTagColor) => {
+  let filteredNotes = data;
+
+  if (filterNotes) {
+    filteredNotes = filteredNotes.filter(note => 
+      note.title.toLowerCase().includes(filterNotes.toLowerCase()) ||
+      note.content.toLowerCase().includes(filterNotes.toLowerCase())
+    );
   }
-}
+
+  if (selectedTagColor) {
+    filteredNotes = filteredNotes.filter(note => 
+      note.tags && note.tags.some(tag => tag.color === selectedTagColor)
+    );
+  }
+
+  setNotes(filteredNotes);
+  return filteredNotes;
+};
+
 
 
 export const deleteNote = async (id,setNotes,token) => {

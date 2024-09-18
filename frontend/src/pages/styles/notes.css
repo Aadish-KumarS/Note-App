@@ -1,3 +1,4 @@
+
 .noteList_container{
   column-count: 3;
   width: 100%;
@@ -42,6 +43,13 @@
   cursor: pointer;
   background-color: var(--background-color);
   color: var(--color);
+}
+.colorName-filter{
+  padding: .75rem 1.5rem;
+  border-radius: 3rem;
+  color: var(--dark-color);
+  width: fit-content;
+  margin-bottom: 2rem;
 }
 /* ---------------------------------------------------- */
 /* EDIT */
@@ -212,17 +220,31 @@
   border-radius: 1rem;
   background-color: var(--tertiary-color);
 }
-.editNote-section2 textarea,
-.newNote-section2 textarea {
+.quill{
+  max-width: inherit;
+}
+.ql-editor {
+  width: 100%;
+  min-height: 700px;
+  border: 2px solid var(--dark-color) !important;
+  border-bottom-right-radius: 1rem;
+  border-bottom-left-radius: 1rem;
   color: var(--dark-color);
-  border: none;
-  outline: none;
-  min-width: 100%;
-  background-color: transparent;
   font-size: 1rem;
-  min-height: 40vh;
-  resize: none;
-  line-height: 1.5rem;
+  line-height: 2rem !important;
+}
+.ql-container.ql-snow{
+  border: none !important;
+  width: 100%;
+}
+.ql-editor strong {
+  font-size: 1rem !important; 
+}
+.ql-toolbar.ql-snow{
+  border: 2px solid var(--dark-color) !important;
+  border-top-right-radius: 1rem;
+  border-top-left-radius: 1rem;
+  border-bottom: none !important;
 }
 .editNote-section3 button,
 .newNote-section3 button{
@@ -257,7 +279,8 @@
 .editNote h1,
 .newNote h1{  
   font-size: 3rem;
-  font-weight: 300;
+  font-weight: 600;
+  color: var(--tertiary-color);
 }
 .newNote button{
   padding: .5rem 1.75rem;
@@ -275,7 +298,11 @@
   cursor: pointer;
   border: 3px solid transparent;
 }
-
+.no-notes h1{
+  margin: 5rem 0;
+  font-size: 3rem;
+  color: var(--color);
+}
 
 /* ---------------------------------------------------- */
 /* Important notes */
@@ -299,11 +326,7 @@
   margin: 1rem 0;
 }
 
-.empty-deletedNotes h1{
-  margin: 5rem 0;
-  font-size: 3rem;
-  color: var(--color);
-}
+
 .empty-deletedNotes .newNote-icon{
   width: 300px;
   height: 300px;
@@ -337,4 +360,38 @@
   display: flex;
   align-items: center;
   gap: .5rem;
+}
+
+/* ---------------------------------------------------- */
+/* Edit Notes */
+/* ---------------------------------------------------- */
+
+.preview{
+  border: 2px solid var(--dark-color);
+  border-radius: 1rem;
+  padding: 2rem;
+  background-color: var(--tertiary-color);
+  color: var(--dark-color);
+  overflow-wrap: anywhere;
+}
+.preview .ql-editor{
+  font-size: 1rem;
+  border-radius: 1rem;
+  background-color: var(--secondary-color);
+  color: var(--dark-color);
+}
+.preview h1{
+  font-size: 2.5rem;
+  overflow-wrap: anywhere;
+}
+.tag {
+  padding: .75rem 1rem;
+  border-radius: 3rem ;
+  display: inline-block;
+}
+.preview-tagContainer{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 1rem;
 }

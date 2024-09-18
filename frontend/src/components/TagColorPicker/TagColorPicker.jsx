@@ -6,14 +6,18 @@ import { useState } from 'react'
 
 const TagColorPicker = (props) => {
 
-  const {handleAddTag,handleSelectColor,editNote} = props;
+  const {handleAddTag,handleSelectColor} = props;
 
   const [newTag, setNewTag] = useState('');
 
   return (
     <div>
       <div className="editNote-section3">
-          <button onClick={() => handleAddTag(newTag)}>
+          <button onClick={() => {
+            if(newTag){
+              handleAddTag(newTag)
+            }
+          }}>
             Add Tag
             <FiPlusCircle className="icon add-btn" />
           </button>

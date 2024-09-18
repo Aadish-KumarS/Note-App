@@ -1,11 +1,14 @@
 .menu{
   margin: 1rem;
 }
+
 .menu-section{
   display: flex;
   flex-direction: column;
   width: 100%;
   gap: 1rem;
+  padding: .5rem 0;
+
 }
 .section-item{
   background-color: var(--secondary-color);
@@ -29,7 +32,8 @@
   border-radius: .75rem;
   width: 100%;
   overflow: hidden;
-  cursor: pointer;
+  border-top: 2px solid var(--dark-color);
+  border-bottom: 2px solid var(--dark-color);
 }
 .notes-list{
   width: 100%;

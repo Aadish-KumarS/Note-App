@@ -9,6 +9,8 @@ import './noteCard.css'
 import { deleteNote, handleRestoreOne, handleSetImportant } from "../../utils/eventHandlers";
 import { useEffect } from "react";
 import gsap from 'gsap'
+import parse from 'html-react-parser'; 
+
 
 const NoteCard = ({notes,setNotes,isDeleted = false}) => {
 
@@ -48,32 +50,41 @@ const NoteCard = ({notes,setNotes,isDeleted = false}) => {
                             className="icon star-btn" 
                           />
                     }
-                    <Link to={'/construction'}>
+                    <Link to={`/notes/previwe/${note._id}`}>
                       <RiFileInfoLine className="icon preview-btn"  />
                     </Link>
                   </div>
                 }
 
                 <div className="notescard-sec2">
-                  <div className="card_number">{i+1}</div>
-                  <h1>{note.title}</h1>
+                  <div className="card-title">
+                    <div className="card_number">{i+1}</div>
+                    <h1>{note.title}</h1>
+                  </div>
                   <div className="notescard-sec2-content">
-                    <p>{note.content}</p>
+                    <p>{parse(note.content)}</p>
                   </div>
                 </div>
               </div>
               <div className="notescard-sec3">
-                {note.tags.map((tag,i) => {
-                  return(
-                    <p 
-                      className="tag" 
-                      key={i}
-                      style={{backgroundColor: tag.color}}
-                    >
-                        {tag.name}
-                    </p>
-                  )
-                })}
+                {
+                  note.tags.length > 0  
+                  ? (
+                    note.tags.map((tag,i) => {
+                      return(
+                        <p 
+                          className="tag" 
+                          key={i}
+                          style={{backgroundColor: tag.color}}
+                        >
+                            {tag.name}
+                        </p>
+                      )
+                    })
+                  ) : 
+                    <p  className="tag">No tags.</p>
+                }
+
               </div>
               <div className="notescard-sec4">
                 {

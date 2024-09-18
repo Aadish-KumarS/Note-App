@@ -41,7 +41,8 @@
 .theme-info{
   background-color: var(--tertiary-color);
   color: var(--dark-color);
-  padding: 1.5rem ;
+  padding: 2rem 5rem ;
+  margin: 3rem 5rem;
   border-radius: 1rem;
 }
 .switch-btn{
@@ -56,10 +57,14 @@
   color: var(--color);
 }
 .theme-img{
-  padding: 2rem ;
+  margin: 2rem 0;
 }
 .theme-img img{
-  margin: 1rem 3rem ;
   width: 80%;
   border-radius: 1rem;
+}
+.theme-info-text{
+  width: 60%;
+  margin: 1rem ;
+  font-weight: 600;
 }

@@ -9,31 +9,50 @@
   margin-bottom: 1rem ;
   opacity: 0;
   transform: scale(0);
+  width: 100%;
+  overflow-wrap: anywhere;
+  overflow: scroll;
+
 }
 
 .notescard-sec1{
   padding: 1rem;
   gap:2rem;
   justify-content: end;
-  border-bottom: 1px solid var(--dark-color);
   align-items: center;
   display: flex;
 }
-
+.card-title{
+  display: flex;
+  gap: 1rem;
+  flex-flow: row;
+  border-bottom:1px solid var(--dark-color) ;
+  border-top:1px solid var(--dark-color) ;
+  padding: 1rem 0;
+}
 .notescard-sec2{
   margin: 1rem 0;
   gap: 1rem;
-
+  width: 100%;
 }
 .notescard-sec2-content{
-  max-height: 400px;
+  min-height: 130px;
+  max-height: 600px;
+  overflow-wrap: anywhere;
   overflow: scroll;
+}
+.notescard-sec2-content  {
+  max-width: 300px;
+  /* width: 10%; */
 }
 .notescard-sec3{
   display: flex;
   gap: 1rem;
   flex-wrap: wrap;
   margin-top: 1.25rem;
+  border-bottom:1px solid var(--dark-color) ;
+  border-top:1px solid var(--dark-color) ;
+  padding: 1rem 0;
 }
 .notescard-sec2,
 .notescard-sec1 *,
@@ -51,17 +70,19 @@
   background-color:var(--dark-color);
   color: var(--color);
   border-radius: 50%;
-  width: 30px;
-  height: 30px;
+  min-width: 30px;
+  max-width: 30px;
+  max-height: 30px;
 }
 .notescard-sec3 .tag{
   padding: .5rem 1.25rem;
   border-radius: 3rem;
   font-size: .9rem;
+  background-color: var(--secondary-color);
 }
 
 .notescard-sec4 .delete-btn {
-  margin: 2rem 0 1rem 0;
+  margin: 1rem 0 1rem 0;
   color: var(--neon-red);
   cursor: pointer;
 }
@@ -79,4 +100,8 @@
 .preview-btn{
   cursor: pointer;
   color: var(--neon-blue);
+}
+
+.notescard-sec2-content strong {
+  font-size: 1rem !important; 
 }
