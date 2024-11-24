@@ -82,14 +82,6 @@ const SlideMenu = ({ setSelectedTagColor,selectedTagColor }) => {
           </div>
         </div>
 
-        <div className="menu-notes">
-          <Link 
-            className="section-item" 
-            to={'/construction'}
-          > 
-            Todo <IoIosArrowForward className="icon arrow" />
-          </Link>
-        </div>
       </div>
 
     </section>

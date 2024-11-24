@@ -32,9 +32,6 @@ const NavBar = ({setIsSlideMenuActive,}) => {
           <li className={isActive('/notes') ? 'active' : ''}>
             <Link to={'/notes'}>Notes</Link>
           </li>
-          <li className={isActive('/todo') ? 'active' : ''}>
-            <Link to={'/construction'}>Todo</Link>
-          </li>
         </ul>
         <div className="nav_section3">
             <Link  to={'/theme'}>
